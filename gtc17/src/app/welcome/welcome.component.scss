@@ -1,3 +1,5 @@
+@import '../../assets/styles/variables.scss';
+
 button {
   display: block;
   width: 100%;
@@ -5,4 +7,17 @@ button {
 
 h1 {
   text-align: center;
+}
+
+
+button {
+  text-align: justify;
+  &.is-active.is-success {
+    background-color: $primary_green; 
+  }
+}
+
+#next {
+  color:  white;
+  background-color: $secondary_purple;
 }
