@@ -1,3 +1,5 @@
+import { environment } from './../environments/environment';
+import { AgmCoreModule } from '@agm/core';
 import { appRouterConfig } from './app.routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -27,7 +29,8 @@ import { ConfirmationComponent } from './signup/confirmation/confirmation.compon
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRouterConfig, { useHash: false })
+    RouterModule.forRoot(appRouterConfig, { useHash: false }),
+    AgmCoreModule.forRoot({apiKey: environment.GMAPS_API_KEY, libraries: ['geometry', 'places']})
   ],
   providers: [
     SignupService
