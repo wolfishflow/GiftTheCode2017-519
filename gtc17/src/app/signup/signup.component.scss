@@ -17,6 +17,19 @@
     line-height: 1;
   }
 
+  .options {
+    text-align: justify;
+    font-size: 32px;
+    padding: 21px;
+    &:hover {
+      cursor: pointer;
+    }
+    &.active {
+      background-color: $primary-green;
+      color: white;
+    }
+  }
+
   
   .input {
       font-size: 32px;

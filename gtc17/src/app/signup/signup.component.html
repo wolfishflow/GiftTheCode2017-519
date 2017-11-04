@@ -23,14 +23,14 @@
     </div>
 
     <div *ngIf="currentStep === 1">
-      <h1>Do you have a mailing address?</h1>
-      <p>We would like this information so we can send you a membership card.</p>
-      <button [ngClass]="{'button is-success is-active': oneSelected}" (click)="toggleSelectionOne()">Yes, I have a mailing address</button>
-      <button [ngClass]="{'button is-success is-active': twoSelected}" (click)="toggleSelectionTwo()">No, I don’t have a mailing address</button>
+      <h1 class="prompt">Do you have a mailing address?</h1>
+      <p class="sub-prompt">We would like this information so we can send you a membership card.</p>
+      <button class="options" [ngClass]="{'active': oneSelected}" (click)="toggleSelectionOne()">Yes, I have a mailing address</button>
+      <button class="options" [ngClass]="{'active': twoSelected}" (click)="toggleSelectionTwo()">No, I don’t have a mailing address</button>
 
       <h2>This is my..</h2>
-      <button [ngClass]="{'button is-success is-active': oneSelected}" (click)="toggleSelectionOne()">home address</button>
-      <button [ngClass]="{'button is-success is-active': twoSelected}" (click)="toggleSelectionTwo()">work address</button>
+      <button class="options" [ngClass]="{'active': oneSelected}" (click)="toggleSelectionOne()">home address</button>
+      <button class="options" [ngClass]="{'active': twoSelected}" (click)="toggleSelectionTwo()">work address</button>
 
 
       <h2>Address Details</h2>
