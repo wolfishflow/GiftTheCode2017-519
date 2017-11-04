@@ -1,0 +1,36 @@
+@import '../../assets/styles/variables.scss';
+
+.prompt {
+    margin-bottom: 48px;
+    font-weight: bold;
+    font-size: 45px;
+    text-align: justify;
+    line-height: 1;
+  }
+
+  .secondary-prompt {
+    margin-top: 80px;
+    margin-bottom: 21px;
+    text-align: justify;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  
+  .input {
+      font-size: 32px;
+      margin-bottom: 20px;
+  }
+
+  .centering {
+      align-content: center;
+  }
+
+  #nextButton {
+    margin-top: 60px;
+    color: white;
+    padding: 12px;
+    background-color: $secondary-purple;
+    text-align: center;
+  }
