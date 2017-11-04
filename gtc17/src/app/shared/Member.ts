@@ -11,6 +11,7 @@ export class Member {
   public country: string,
   public postalcode: string,
   public email: string,
+  public status: string,
   public preferredPhone: string,
   public membershipDetails: string
   ) {}

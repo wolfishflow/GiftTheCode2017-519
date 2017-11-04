@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from
 import { Member } from '../shared/Member';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/takeUntil';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,12 +16,15 @@ export class SignupComponent implements OnInit {
   public currentStep: number = 0;
   public memberForm: FormGroup;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
+  public member: Member;
+  public status: string = "individual";
 
   public individualSelected: boolean = true;
   public mailAddressSelected: boolean = true;
   public homeAddress: boolean = true;
 
   constructor(private signupService: SignupService,
+              private router: Router,
               private formBuilder: FormBuilder) { }
 
   ngOnInit() { 
@@ -55,9 +59,12 @@ export class SignupComponent implements OnInit {
     let preferredPhone = this.memberForm.controls["preferredPhone"].value;
     let membershipDetails = this.memberForm.controls["membershipDetails"].value;
 
-    let member = new Member(memberId, firstName, lastName, birthdate, streetAddress, city, province, country, 
-                            postalcode, email, preferredPhone, membershipDetails);
-    console.log(member);
+    let status = this.status;
+
+    this.member = new Member(memberId, firstName, lastName, birthdate, streetAddress, city, province, country, 
+                            postalcode, email, status, preferredPhone, membershipDetails);
+            
+    this.currentStep = this.currentStep + 1;
     //this.createMember(member)
   }
 
@@ -67,8 +74,13 @@ export class SignupComponent implements OnInit {
     )
   }
 
+  routeToWelcome() {
+    this.router.navigate(['welcome']);
+  }
+
   toggleIndividualSelection() {
     this.individualSelected = !this.individualSelected;
+    (this.individualSelected) ? this.status = "individual" : this.status = "household";
   }
 
   toggleMailSelection() {

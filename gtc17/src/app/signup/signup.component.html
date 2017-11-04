@@ -11,6 +11,7 @@
         <button [ngClass]="{'button is-success is-active': !individualSelected}" 
         (click)="toggleIndividualSelection()">I would like to sign up my household</button>
 
+        <button id="backButton" (click)="routeToWelcome()">Back</button>                        
         <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
       </div>
 
@@ -22,7 +23,7 @@
         <h2>Birthday</h2>
         <p>Datepicker here...</p>
 
-        <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>                
+        <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>        
         <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
       </div>
 
@@ -82,7 +83,9 @@
             <option>Canada</option>
           </select>     
         </div>
-        <input class="input" formControlName="postalcode" placeholder="Postal Code/Zip"/>
+        <input class="input" formControlName="postalcode" 
+                             value="memberForm.controls.postalcode" 
+                             placeholder="Postal Code/Zip"/>
 
         <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>        
         <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
@@ -90,9 +93,12 @@
   
       <div *ngIf="currentStep === 3">
         <h1>We’d like to stay in touch! Please share your contact information.</h1>
-        <input class="input" formControlName="email" placeholder="Email address"/>
-        <input class="input" formControlName="preferredPhone" placeholder="Preferred Phone Number"/>
-  
+        <input class="input" formControlName="email" 
+                             value="memberForm.controls.email" 
+                             placeholder="Email address"/>
+        <input class="input" formControlName="preferredPhone" 
+                             value="memberForm.controls.preferredPhone"
+                             placeholder="Preferred Phone Number"/>
         <br>
         <label class="checkbox">
           <input type="checkbox">
@@ -111,8 +117,8 @@
       <div *ngIf="currentStep === 4">
         <h1>Please create a password so you can access your membership online.</h1>
         <p>Password should be 8-12 characters and include letters and numbers.</p>
-        <input class="input" formControlName="password" placeholder="Password"/>
-        <input class="input" formControlName="password" placeholder="Retype Password"/>
+        <input class="input" placeholder="Password"/>
+        <input class="input" placeholder="Retype Password"/>
   
         <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>        
         <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
@@ -121,14 +127,14 @@
       <div *ngIf="currentStep === 5">
         <h1>What does the 519 mean to you?</h1>
         <textarea class="textarea" formControlName="membershipDetails" 
+                  value="memberForm.controls.membershipDetails"
                   placeholder="Tell us anything you like"></textarea>
         
         <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>                          
         <button id="nextButton" (click)="submitMemberForm()">Next></button>
       </div>
-
+      <confirmation *ngIf="currentStep === 6" [member]="member"></confirmation>      
     </form>
-
   </div>
   <div class="column is-one-quarter"></div>
 </div>
