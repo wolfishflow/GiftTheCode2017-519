@@ -8,6 +8,9 @@ import { SignupComponent } from './signup/signup.component';
 import { RenewComponent } from './renew/renew.component';
 import { UpdateComponent } from './update/update.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignupService } from './signup/signup.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -19,9 +22,14 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRouterConfig, { useHash: false })
   ],
-  providers: [],
+  providers: [
+    SignupService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,14 +3,19 @@
   <div class="columns">
     <div class="column is-one-quarter"></div>
     <div class="column is-one-half">
-        <h1>Welcome! What would you like to do today</h1>
-        <button [ngClass]="{'button is-success is-active': oneSelected}" 
-        (click)="toggleSelectionOne()">Become A Member</button>
-        <button [ngClass]="{'button is-success is-active': twoSelected}" 
-        (click)="toggleSelectionTwo()">Renew My Membership</button>
-        <button [ngClass]="{'button is-success is-active': threeSelected}" 
-        (click)="toggleSelectionThree()">Update my contact information</button>    
-        <button id="next" (click)="routeToTask()">Next></button>    
+      <h1>Welcome! What would you like to do today</h1>
+      <button [ngClass]="{'button is-success is-active': oneSelected}" 
+      (click)="toggleSelectionOne()">Become A Member</button>
+      <button [ngClass]="{'button is-success is-active': twoSelected}" 
+      (click)="toggleSelectionTwo()">Renew My Membership</button>
+      <button [ngClass]="{'button is-success is-active': threeSelected}" 
+      (click)="toggleSelectionThree()">Update my contact information</button>  
+      
+      <div *ngIf="showRouteError">
+        <h3>Please select one of the above options</h3>
+      </div>
+      
+      <button id="next" (click)="routeToTask()">Next></button>    
     </div>
     <div class="column is-one-quarter"></div>    
   </div>

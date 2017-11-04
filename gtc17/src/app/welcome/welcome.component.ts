@@ -12,6 +12,7 @@ export class WelcomeComponent implements OnInit {
   public twoSelected: boolean = false;
   public threeSelected: boolean = false;
   public route: String = '';
+  public showRouteError: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -21,6 +22,7 @@ export class WelcomeComponent implements OnInit {
     this.oneSelected = true;
     this.twoSelected = false;
     this.threeSelected = false;
+    this.showRouteError = false;
     this.route = 'signup';
   }
 
@@ -28,6 +30,7 @@ export class WelcomeComponent implements OnInit {
     this.oneSelected = false;
     this.twoSelected = true;
     this.threeSelected = false;
+    this.showRouteError = false;
     this.route = 'renew';
   }
 
@@ -35,12 +38,15 @@ export class WelcomeComponent implements OnInit {
     this.oneSelected = false;
     this.twoSelected = false;
     this.threeSelected = true;
+    this.showRouteError = false;
     this.route = 'update';
   }
 
   routeToTask() {
     if (this.oneSelected || this.twoSelected || this.threeSelected) {
       this.router.navigate([this.route]);
+    } else {
+      this.showRouteError = true;
     }
 
   }
