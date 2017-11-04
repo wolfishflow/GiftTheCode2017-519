@@ -1,3 +1,76 @@
-<p>
-  signup works!
-</p>
+<div class="columns">
+  <div class="column is-one-quarter"></div>
+  <div class="column is-one-half">
+    <div *ngIf="currentStep === 0">
+      <h1>Tell us more about yourself</h1>
+      <input class="input" placeholder="First Name"/>
+      <input class="input" placeholder="Last Name"/>
+
+      <h2>Birthday</h2>
+      <p>Datepicker here...</p>
+      <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+    </div>
+
+    <div *ngIf="currentStep === 1">
+      <h1>Do you have a mailing address?</h1>
+      <p>We would like this information so we can send you a membership card.</p>
+      <button [ngClass]="{'button is-success is-active': oneSelected}" 
+      (click)="toggleSelectionOne()">Yes, I have a mailing address</button>
+      <button [ngClass]="{'button is-success is-active': twoSelected}" 
+      (click)="toggleSelectionTwo()">No, I don’t have a mailing address</button>
+
+      <h2>This is my..</h2>
+      <button [ngClass]="{'button is-success is-active': oneSelected}" 
+      (click)="toggleSelectionOne()">home address</button>
+      <button [ngClass]="{'button is-success is-active': twoSelected}" 
+      (click)="toggleSelectionTwo()">work address</button>
+
+
+      <h2>Address Details</h2>
+      <input class="input" placeholder="Street"/>
+      <input class="input" placeholder="City/Town"/>
+      <div class="select">
+        <select>
+          <option>ON</option>
+        </select>     
+      </div>
+      <div class="select">
+        <select>
+          <option>Canada</option>
+        </select>     
+      </div>
+      <input class="input" placeholder="Postal Code/Zip"/>
+
+      <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+    </div>
+
+    <div *ngIf="currentStep === 2">
+      <h1>We’d like to stay in touch! Please share your contact information.</h1>
+      <input class="input" placeholder="Email address"/>
+
+      <input class="input" placeholder="Cell Phone"/>
+      <input class="input" placeholder="Home Phone"/>  
+
+      <div class="select">
+        <select>
+          <option>Option 1</option>
+        </select>      
+      </div>
+      <br>
+      <label class="checkbox">
+        <input type="checkbox">
+        I give The 519 permission to contact me by email.
+      </label>
+      <br>
+      <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+    </div>
+
+    <div *ngIf="currentStep === 3">
+      <h1>What does the 519 mean to you?</h1>
+      <textarea class="textarea" placeholder="Tell us anything you like"></textarea>
+
+      <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+    </div>
+  </div>
+  <div class="column is-one-quarter"></div>
+</div>

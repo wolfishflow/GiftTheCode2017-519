@@ -1,2 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bulma/css/bulma.css';
+
+button {
+  display: block;
+}
+
+.button-is-active {
+  background-color: green;
+  color: white;
+}
