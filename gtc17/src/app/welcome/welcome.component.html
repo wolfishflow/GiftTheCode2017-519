@@ -1,22 +1,32 @@
-
 <div class="container">
   <div class="columns">
-    <div class="column is-one-quarter"></div>
-    <div class="column is-one-half">
-      <h1>Welcome! What would you like to do today</h1>
-      <button [ngClass]="{'button is-success is-active': oneSelected}" 
+    <div class="column is-2"></div>
+    <div class="column is-8">
+      <h1 class="prompt">Welcome! What would you like to do today</h1>
+      <button class="options" [ngClass]="{'active': oneSelected}" 
       (click)="toggleSelectionOne()">Become A Member</button>
-      <button [ngClass]="{'button is-success is-active': twoSelected}" 
+      <button class="options" [ngClass]="{'active': twoSelected}" 
       (click)="toggleSelectionTwo()">Renew My Membership</button>
-      <button [ngClass]="{'button is-success is-active': threeSelected}" 
+      <button class="options" [ngClass]="{'active': threeSelected}" 
       (click)="toggleSelectionThree()">Update my contact information</button>  
       
       <div *ngIf="showRouteError">
         <h3>Please select one of the above options</h3>
       </div>
       
-      <button id="next" (click)="routeToTask()">Next></button>    
+      <div class="columns">
+          <div class="column is-two-fifth">
+  
+          </div>
+          <div class="column is-one-fifth">
+            <button id="next" (click)="routeToTask()">Next></button>
+            
+          </div>
+          <div class="column is-two-fifth">
+  
+          </div>
+        </div>
     </div>
-    <div class="column is-one-quarter"></div>    
+    <div class="column is-2"></div>
   </div>
 </div>
