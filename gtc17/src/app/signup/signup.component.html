@@ -6,16 +6,20 @@
 
       <div *ngIf="currentStep === 0">
         <h1 class="title">Would you like to sign up as an individual or as a household?</h1>
-        <button class="options" [ngClass]="{'active': individualSelected}" (click)="toggleIndividualSelection()">I would like to sign up as an individual</button>
-        <button class="options" [ngClass]="{'active': !individualSelected}" (click)="toggleIndividualSelection()">I would like to sign up my household</button>
+        <button class="options" [ngClass]="{'active': individualSelected}" style="border-bottom: none;" 
+        (click)="toggleIndividualSelection()">I would like to sign up as an individual
+        <i class="fa fa-check" aria-hidden="true"></i></button>
+        <button class="options" [ngClass]="{'active': !individualSelected}" 
+        (click)="toggleIndividualSelection()">I would like to sign up my household
+        <i class="fa fa-check" aria-hidden="true"></i></button>
 
         <div class="columns">
-          <div class="column is-two-fifth"></div>
-          <div class="column is-one-fifth">
+          <div class="column is-3"></div>
+          <div class="column is-6">
             <button id="backButton" (click)="routeToWelcome()">Back</button>                        
             <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
           </div>
-          <div class="column is-two-fifth"></div>
+          <div class="column is-2"></div>
         </div>
       </div>
 
@@ -52,13 +56,19 @@
       <div *ngIf="currentStep === 2">
         <h1 class="title">Do you have a mailing address?</h1>
         <p class="sub-title">We would like this information so we can send you a membership card.</p>
-        <button class="options" [ngClass]="{'active': mailAddressSelected}" (click)="toggleMailSelection()">Yes, I have a mailing address</button>
-        <button class="options" [ngClass]="{'active': !mailAddressSelected}" (click)="toggleMailSelection()">No, I don’t have a mailing address</button>
+        <button class="options" [ngClass]="{'active': mailAddressSelected}" 
+        (click)="toggleMailSelection()">Yes, I have a mailing address
+        <i class="fa fa-check" aria-hidden="true"></i></button>
+        <button class="options" [ngClass]="{'active': !mailAddressSelected}" 
+        (click)="toggleMailSelection()">No, I don’t have a mailing address
+        <i class="fa fa-check" aria-hidden="true"></i></button>
 
         <div *ngIf="mailAddressSelected">
           <h2 class="sub-title">This is my..</h2>
-          <button class="options" [ngClass]="{'active': homeAddress}" (click)="toggleAddressSelection()">Home address</button>
-          <button class="options" [ngClass]="{'active': !homeAddress}" (click)="toggleAddressSelection()">Work address</button>
+          <button class="options" [ngClass]="{'active': homeAddress}" 
+          (click)="toggleAddressSelection()">Home address<i class="fa fa-check" aria-hidden="true"></i></button>
+          <button class="options" [ngClass]="{'active': !homeAddress}" 
+          (click)="toggleAddressSelection()">Work address<i class="fa fa-check" aria-hidden="true"></i></button>
         </div>
 
 

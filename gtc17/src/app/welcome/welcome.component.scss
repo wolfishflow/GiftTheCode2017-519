@@ -8,15 +8,16 @@ button {
   margin-bottom: 48px;
   text-align: center;
   font-weight: bold;
-  font-size: 45px;
-  text-align: justify;
+  font-size: 34px;
+  text-align: center;
   line-height: 1;
 }
 
 .options {
   text-align: justify;
-  font-size: 32px;
-  padding: 21px;
+  font-size: 24px;
+  padding: 24px;
+  font-weight: 500;
   &:hover {
     cursor: pointer;
   }

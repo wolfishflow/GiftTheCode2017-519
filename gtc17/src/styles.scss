@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bulma/css/bulma.css';
 @import './assets/styles/variables';
+@import '~font-awesome/css/font-awesome.css';
+
+input, select, button, body, html, textarea, h1-h6, p {
+  font-family: "Roboto", sans-serif;
+}
 
 button {
   display: block;
@@ -10,4 +15,17 @@ button {
   &:focus{
     border: none;
   }
+}
+
+.fa-check {
+  color: white;
+  float: right;
+  padding-right: 10px;
+  font-size: 28px;
+}
+
+#backButton, #nextButton {
+  width: 40%;
+  margin: 0 auto;
+  display: inline;
 }
