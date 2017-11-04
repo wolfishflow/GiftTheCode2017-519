@@ -1,23 +1,35 @@
 @import '../../assets/styles/variables.scss';
-
 button {
   display: block;
   width: 100%;
 }
 
-h1 {
+.prompt {
+  margin-bottom: 48px;
   text-align: center;
+  font-weight: bold;
+  font-size: 45px;
+  text-align: justify;
+  line-height: 1;
 }
 
-
-button {
+.options {
   text-align: justify;
-  &.is-active.is-success {
-    background-color: $primary_green; 
+  font-size: 32px;
+  padding: 21px;
+  &:hover {
+    cursor: pointer;
+  }
+  &.active {
+    background-color: $primary-green;
+    color: white;
   }
 }
 
 #next {
-  color:  white;
-  background-color: $secondary_purple;
+  margin-top: 60px;
+  color: white;
+  padding: 12px;
+  background-color: $secondary-purple;
+  text-align: center;
 }
