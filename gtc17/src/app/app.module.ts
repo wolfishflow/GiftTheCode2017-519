@@ -2,13 +2,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { SignupComponent } from './signup/signup.component';
+import { RenewComponent } from './renew/renew.component';
+import { UpdateComponent } from './update/update.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomeComponent,
+    SignupComponent,
+    RenewComponent,
+    UpdateComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
