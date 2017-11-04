@@ -1,6 +1,11 @@
 @import '../../assets/styles/variables.scss';
 
-.prompt {
+button {
+  display: block;
+  width: 100%;
+}
+
+.title {
     margin-bottom: 48px;
     font-weight: bold;
     font-size: 45px;
@@ -8,8 +13,8 @@
     line-height: 1;
   }
 
-  .secondary-prompt {
-    margin-top: 80px;
+  .sub-title {
+    margin-top: 50px;
     margin-bottom: 21px;
     text-align: justify;
     font-weight: bold;
@@ -45,5 +50,14 @@
     color: white;
     padding: 12px;
     background-color: $secondary-purple;
+    text-align: center;
+  }
+
+  #backButton {
+    margin-top: 60px;
+    color: $secondary-purple;
+    padding: 12px;
+    border-color: $secondary-purple;
+    background-color: white;
     text-align: center;
   }
