@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupService } from './signup/signup.service';
 import { HttpModule } from '@angular/http';
+import { ConfirmationComponent } from './signup/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpModule } from '@angular/http';
     WelcomeComponent,
     SignupComponent,
     RenewComponent,
-    UpdateComponent
+    UpdateComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

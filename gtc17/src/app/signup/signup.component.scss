@@ -1,0 +1,63 @@
+@import '../../assets/styles/variables.scss';
+
+button {
+  display: block;
+  width: 100%;
+}
+
+.title {
+    margin-bottom: 48px;
+    font-weight: bold;
+    font-size: 45px;
+    text-align: justify;
+    line-height: 1;
+  }
+
+  .sub-title {
+    margin-top: 50px;
+    margin-bottom: 21px;
+    text-align: justify;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .options {
+    text-align: justify;
+    font-size: 32px;
+    padding: 21px;
+    &:hover {
+      cursor: pointer;
+    }
+    &.active {
+      background-color: $primary-green;
+      color: white;
+    }
+  }
+
+  
+  .input {
+      font-size: 32px;
+      margin-bottom: 20px;
+  }
+
+  .centering {
+      align-content: center;
+  }
+
+  #nextButton {
+    margin-top: 60px;
+    color: white;
+    padding: 12px;
+    background-color: $secondary-purple;
+    text-align: center;
+  }
+
+  #backButton {
+    margin-top: 60px;
+    color: $secondary-purple;
+    padding: 12px;
+    border-color: $secondary-purple;
+    background-color: white;
+    text-align: center;
+  }
