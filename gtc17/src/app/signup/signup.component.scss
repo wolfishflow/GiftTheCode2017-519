@@ -29,6 +29,11 @@ select {
   font-size: 26px;
   line-height: 1;
 }
+  
+.input, .select {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
 
 .options {
   text-align: justify;
@@ -62,11 +67,18 @@ select {
   text-align: center;
 }
 
-#backButton {
-  margin-top: 60px;
-  color: $secondary-purple;
-  padding: 12px;
-  border-color: $secondary-purple;
-  background-color: white;
-  text-align: center;
-}
+  #backButton {
+    margin-top: 60px;
+    color: $secondary-purple;
+    padding: 12px;
+    border-color: $secondary-purple;
+    background-color: white;
+    text-align: center;
+  }
+
+  /* datepicker custom styles */
+
+  .mat-calendar-body-selected {
+    background-color: $primary-green !important;
+    border-color: $secondary-purple !important;
+  }
