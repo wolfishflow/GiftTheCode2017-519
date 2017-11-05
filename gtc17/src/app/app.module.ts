@@ -15,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupService } from './signup/signup.service';
 import { HttpModule } from '@angular/http';
 import { ConfirmationComponent } from './signup/confirmation/confirmation.component';
-import { MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatCheckboxModule } from '@angular/material'
+import { MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatCheckboxModule } from '@angular/material';
+import { AdminComponent } from './admin/admin.component'
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatInputM
     RenewComponent,
     UpdateComponent,
     ConfirmationComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
