@@ -16,8 +16,8 @@ select {
 
 .title {
   margin-bottom: 34px;
-  font-weight: bold;
-  font-size: 34px;
+  color: $title-font-color;
+  font-size: 42px;
   line-height: 1;
 }
 
@@ -28,6 +28,11 @@ select {
   font-weight: bold;
   font-size: 26px;
   line-height: 1;
+}
+
+.sub-header {
+  font-size: 32px;
+  color: $sub-header-font-color;
 }
   
 .input, .select {
@@ -53,6 +58,15 @@ select {
   font-size: 32px;
   margin-bottom: 20px;
   border-color: #979797;
+}
+
+mat-checkbox {
+  font-family: Roboto;
+  height:40px;
+  font-size: 32px;
+  line-height:1.25;
+  letter-spacing: -0.1px;
+  
 }
 
 .centering {

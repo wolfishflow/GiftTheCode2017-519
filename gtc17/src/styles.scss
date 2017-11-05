@@ -1,11 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import '~bulma/css/bulma.css';
 @import './assets/styles/variables';
 @import '~font-awesome/css/font-awesome.css';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
-
-input, select, button, body, html, textarea, h1-h6, p {
+input,
+select,
+button,
+body,
+html,
+textarea,
+h1-h6,
+p {
   font-family: "Roboto", sans-serif;
 }
 
@@ -14,7 +20,7 @@ button {
   font-size: 1em;
   border: 1px solid gray;
   background: white;
-  &:focus{
+  &:focus {
     border: none;
   }
 }
@@ -26,8 +32,38 @@ button {
   font-size: 28px;
 }
 
-#backButton, #nextButton {
+#backButton,
+#nextButton {
   width: 40%;
   margin: 0 auto;
   display: inline;
+}
+
+mat-checkbox {
+  .mat-checkbox-layout .mat-checkbox-label {
+    line-height: 1.5;
+    padding-left: 45px;
+  }
+  .mat-checkbox-inner-container {
+    height: 60px;
+    width: 60px;
+  }
+  .mat-checkbox-frame {
+    border-radius:50%;
+    border-width: 6px;    
+    border-color: $primary-green;
+  }
+  
+  .mat-checkbox-label {
+    font-size:32px;
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+  }
+
+  &.mat-checkbox-checked {
+
+    .mat-checkbox-background {
+      background-color: $primary-green !important;
+    }
+  }
 }
