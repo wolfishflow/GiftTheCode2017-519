@@ -6,17 +6,17 @@
 
       <div *ngIf="currentStep === 0">
         <h1 class="title">Would you like to sign up as an individual or as a household?</h1>
-        <button class="options" [ngClass]="{'active': individualSelected}" style="border-bottom: none;" 
-        (click)="toggleIndividualSelection()">I would like to sign up as an individual
-        <i class="fa fa-check" aria-hidden="true"></i></button>
-        <button class="options" [ngClass]="{'active': !individualSelected}" 
-        (click)="toggleIndividualSelection()">I would like to sign up my household
-        <i class="fa fa-check" aria-hidden="true"></i></button>
+        <button class="options" [ngClass]="{'active': individualSelected}" style="border-bottom: none;" (click)="toggleIndividualSelection()">I would like to sign up as an individual
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
+        <button class="options" [ngClass]="{'active': !individualSelected}" (click)="toggleIndividualSelection()">I would like to sign up my household
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
 
         <div class="columns">
           <div class="column is-3"></div>
           <div class="column is-6">
-            <button id="backButton" (click)="routeToWelcome()">Back</button>                        
+            <button id="backButton" (click)="routeToWelcome()">Back</button>
             <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
           </div>
           <div class="column is-2"></div>
@@ -30,7 +30,11 @@
         <input class="input" formControlName="lastName" value="memberForm.controls.lastName" placeholder="Last Name" />
 
         <h2 class="sub-title">Birthday</h2>
-        <p>Datepicker here...</p>
+        <mat-form-field class="column is-full">
+          <input formControlName="birthDate" matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
         <div class="columns">
           <div class="column is-two-fifth"></div>
@@ -56,88 +60,121 @@
       <div *ngIf="currentStep === 2">
         <h1 class="title">Do you have a mailing address?</h1>
         <p>We would like this information so we can send you a membership card.</p>
-        <button class="options" [ngClass]="{'active': mailAddressSelected}" 
-        (click)="toggleMailSelection()">Yes, I have a mailing address
-        <i class="fa fa-check" aria-hidden="true"></i></button>
-        <button class="options" [ngClass]="{'active': !mailAddressSelected}" 
-        (click)="toggleMailSelection()">No, I don’t have a mailing address
-        <i class="fa fa-check" aria-hidden="true"></i></button>
+        <button class="options" [ngClass]="{'active': mailAddressSelected}" (click)="toggleMailSelection()">Yes, I have a mailing address
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
+        <button class="options" [ngClass]="{'active': !mailAddressSelected}" (click)="toggleMailSelection()">No, I don’t have a mailing address
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
 
         <div *ngIf="mailAddressSelected">
           <h2 class="sub-title">This is my..</h2>
-          <button class="options" [ngClass]="{'active': homeAddress}" 
-          (click)="toggleAddressSelection()">Home address<i class="fa fa-check" aria-hidden="true"></i></button>
-          <button class="options" [ngClass]="{'active': !homeAddress}" 
-          (click)="toggleAddressSelection()">Work address<i class="fa fa-check" aria-hidden="true"></i></button>
+          <button class="options" [ngClass]="{'active': homeAddress}" (click)="toggleAddressSelection()">Home address
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
+          <button class="options" [ngClass]="{'active': !homeAddress}" (click)="toggleAddressSelection()">Work address
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
         </div>
 
 
         <h2 class="sub-title">Address Details</h2>
-        <input class="input" formControlName="streetAddress" value="memberForm.controls.streetAddress" placeholder="Street" />
-        <input class="input" formControlName="city" value="memberForm.controls.city" placeholder="City/Town" />
-        <div class="select">
-          <select formControlName="province" value="memberForm.controls.province">
-            <option>ON</option>
-            <option>AB</option>
-            <option>BC</option>
-            <option>MB</option>
-            <option>NB</option>
-            <option>NL</option>
-            <option>NS</option>
-            <option>NT</option>
-            <option>NU</option>
-            <option>PE</option>
-            <option>QC</option>
-            <option>SK</option>
-            <option>YT</option>            
-          </select>
-        </div>
-        <div class="select">
-          <select formControlName="country">
-            <option>Canada</option>
-          </select>
-        </div>
-        <input class="input" formControlName="postalcode" 
-                             value="memberForm.controls.postalcode" 
-                             placeholder="Postal Code/Zip"/>
 
         <div class="columns">
-            <div class="column is-one-fifth"></div>
-            <div class="column is-three-fifth">
-              <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
-              <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
-            </div>
-            <div class="column is-one-fifth"></div>
+          <div class="control column is-fullwidth">
+            <input #autocomplete id="autocomplete" class="input" formControlName="streetAddress" value="memberForm.controls.streetAddress"
+              placeholder="Street" />
           </div>
+        </div>
+
+        <div class="columns">
+
+          <div class="control column is-one-half">
+            <input type="text" class="input" placeholder="Apt Number" formControlName="aptNumber">
+          </div>
+
+
+          <div class="control column is-one-half">
+            <input type="text" class="input" placeholder="Street Number" formControlName="streetNumber">
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="control column is-fullwidth">
+            <input class="input" formControlName="city" value="memberForm.controls.city" placeholder="City/Town" />
+          </div>
+        </div>
+        <div class="columns">
+          <div class="control column">
+            <div class="select is-fullwidth">
+              <select formControlName="province" value="memberForm.controls.province">
+                <option value="ON">Ontario</option>
+                <option value="AB">Alberta</option>
+                <option value="BC">British Columbia</option>
+                <option value="MB">Manitoba</option>
+                <option value="NB">New Brunswick</option>
+                <option value="NL">Newfoundland</option>
+                <option value="NS">Nova Scotia</option>
+                <option value="NT">Northwest Territories</option>
+                <option value="NU">Nunuvat</option>
+                <option value="PE">Prince Edward Island</option>
+                <option value="QC">Quebec</option>
+                <option value="SK">Saskatchewan</option>
+                <option value="YT">Yukon Territories</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="columns">
+          <div class="control column">
+            <div class="select is-fullwidth">
+              <select formControlName="country">
+                <option>Canada</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="control column is-fullwidth">
+            <input class="input" formControlName="postalcode" value="memberForm.controls.postalcode" placeholder="Postal Code/Zip" />
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-one-fifth"></div>
+          <div class="column is-three-fifth">
+            <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
+            <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+          </div>
+          <div class="column is-one-fifth"></div>
+        </div>
       </div>
 
       <div *ngIf="currentStep === 3">
         <h1>We’d like to stay in touch! Please share your contact information.</h1>
-        <input class="input" formControlName="email" 
-                             value="memberForm.controls.email" 
-                             placeholder="Email address"/>
-        <input class="input" formControlName="preferredPhone" 
-                             value="memberForm.controls.preferredPhone"
-                             placeholder="Preferred Phone Number"/>
+        <input class="input" formControlName="email" value="memberForm.controls.email" placeholder="Email address" />
+        <input class="input" formControlName="preferredPhone" value="memberForm.controls.preferredPhone" placeholder="Preferred Phone Number"
+        />
         <br>
         <label class="checkbox">
-          <input type="checkbox">
-          I give The 519 permission to contact me by via mailing address, email, and preferred 
-          phone number about program and service information as well as donating opportunities.
+          <input type="checkbox"> I give The 519 permission to contact me by via mailing address, email, and preferred phone number about program
+          and service information as well as donating opportunities.
         </label>
         <label class="checkbox">
-          <input type="checkbox">
-          I would like to opt in for The 519 newsletter.
+          <input type="checkbox"> I would like to opt in for The 519 newsletter.
         </label>
         <br>
         <div class="columns">
-            <div class="column is-two-fifth"></div>
-            <div class="column is-one-fifth">
-              <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
-              <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
-            </div>
-            <div class="column is-two-fifth"></div>
+          <div class="column is-two-fifth"></div>
+          <div class="column is-one-fifth">
+            <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
+            <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
           </div>
+          <div class="column is-two-fifth"></div>
+        </div>
       </div>
 
       <div *ngIf="currentStep === 4">
@@ -147,31 +184,29 @@
         <input class="input" placeholder="Retype Password" />
 
         <div class="columns">
-            <div class="column is-two-fifth"></div>
-            <div class="column is-one-fifth">
-              <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
-              <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
-            </div>
-            <div class="column is-two-fifth"></div>
+          <div class="column is-two-fifth"></div>
+          <div class="column is-one-fifth">
+            <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
+            <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
           </div>
+          <div class="column is-two-fifth"></div>
+        </div>
       </div>
 
       <div *ngIf="currentStep === 5">
         <h1>What does the 519 mean to you?</h1>
-<textarea class="textarea" formControlName="membershipDetails" 
-                           value="memberForm.controls.membershipDetails"
-                           placeholder="Tell us anything you like"></textarea>
+        <textarea class="textarea" formControlName="membershipDetails" value="memberForm.controls.membershipDetails" placeholder="Tell us anything you like"></textarea>
 
         <div class="columns">
-            <div class="column is-two-fifth"></div>
-            <div class="column is-one-fifth">
-              <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>                          
-              <button id="nextButton" (click)="submitMemberForm()">Next></button>
-            </div>
-            <div class="column is-two-fifth"></div>
+          <div class="column is-two-fifth"></div>
+          <div class="column is-one-fifth">
+            <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
+            <button id="nextButton" (click)="submitMemberForm()">Next></button>
           </div>
+          <div class="column is-two-fifth"></div>
+        </div>
       </div>
-      <confirmation *ngIf="currentStep === 6" [member]="member"></confirmation>      
+      <confirmation *ngIf="currentStep === 6" [member]="member"></confirmation>
     </form>
   </div>
   <div class="column is-one-quarter"></div>

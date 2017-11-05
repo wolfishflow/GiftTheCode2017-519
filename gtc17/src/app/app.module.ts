@@ -3,6 +3,7 @@ import { AgmCoreModule } from '@agm/core';
 import { appRouterConfig } from './app.routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupService } from './signup/signup.service';
 import { HttpModule } from '@angular/http';
 import { ConfirmationComponent } from './signup/confirmation/confirmation.component';
+import { MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatCheckboxModule } from '@angular/material'
 
 @NgModule({
   declarations: [
@@ -22,15 +24,21 @@ import { ConfirmationComponent } from './signup/confirmation/confirmation.compon
     SignupComponent,
     RenewComponent,
     UpdateComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatCheckboxModule,
     RouterModule.forRoot(appRouterConfig, { useHash: false }),
-    AgmCoreModule.forRoot({apiKey: environment.GMAPS_API_KEY, libraries: ['geometry', 'places']})
+    AgmCoreModule.forRoot({ apiKey: environment.GMAPS_API_KEY, libraries: ['geometry', 'places'] })
   ],
   providers: [
     SignupService

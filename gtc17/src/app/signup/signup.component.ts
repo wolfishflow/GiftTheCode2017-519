@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { MatDatepickerModule } from '@angular/material';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SignupService } from './signup.service';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { MapsAPILoader, AgmCoreModule } from '@agm/core';
+
 import coordinates from '../catchment-area.json';
 declare let google: any;
 
@@ -18,6 +21,16 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
+  @ViewChild('autocomplete') set content(content: ElementRef) {
+
+    if (content) {
+      this.autocompleteInput = content.nativeElement;
+
+      this.initGoogleMaps();
+    }
+
+  }
+
   public currentStep: number = 0;
   public memberForm: FormGroup;
   public triangulate: any = undefined;
@@ -29,6 +42,8 @@ export class SignupComponent implements OnInit {
   public individualSelected: boolean = true;
   public mailAddressSelected: boolean = true;
   public homeAddress: boolean = true;
+  private geocode_options = { types: ['address'], componentRestrictions: { country: "ca" } };
+  private autocompleteInput: any;
 
   constructor(
     private signupService: SignupService,
@@ -45,7 +60,6 @@ export class SignupComponent implements OnInit {
 
 
     //initialize google maps services
-    this.initGoogleMaps();
 
 
     //create member formgroup
@@ -54,6 +68,8 @@ export class SignupComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.minLength(1)]],
       birthDate: ['', [Validators.required]],
       streetAddress: ['', [Validators.required, Validators.minLength(1)]],
+      aptNumber: ['', [Validators.required, Validators.minLength(1)]],
+      streetNumber: ['', [Validators.required, Validators.minLength(1)]],
       city: ['', [Validators.required, Validators.minLength(1)]],
       province: ['', [Validators.required, Validators.minLength(1)]],
       country: ['', [Validators.required, Validators.minLength(1)]],
@@ -69,9 +85,10 @@ export class SignupComponent implements OnInit {
     let memberId;
     let firstName = this.memberForm.controls["firstName"].value;
     let lastName = this.memberForm.controls["lastName"].value;
-    let birthdate;
-    // TODO: birthdate
+    let birthdate = this.memberForm.controls["birthDate"].value;
     let streetAddress = this.memberForm.controls["streetAddress"].value;
+    let aptNumber = this.memberForm.controls["aptNumber"].value;;
+    let streetNumber = this.memberForm.controls["streetNumber"].value;
     let city = this.memberForm.controls["city"].value;
     let postalcode = this.memberForm.controls["postalcode"].value;
     let email = this.memberForm.controls["email"].value;
@@ -82,8 +99,18 @@ export class SignupComponent implements OnInit {
 
     let status = this.status;
 
-    this.member = new Member(memberId, firstName, lastName, birthdate, streetAddress, city, province, country,
-      postalcode, email, status, preferredPhone, membershipDetails);
+    let formatted_address = `${streetNumber} ${streetAddress}, ${city}, ${province}, ${country}`;
+    console.log(formatted_address)
+    this.triangulate().subscribe(within_bounds => {
+      this.member = new Member(memberId, firstName, lastName, birthdate, streetAddress,aptNumber, streetNumber, city, province, country,
+        postalcode, within_bounds, email, status, preferredPhone, membershipDetails);
+    },
+      (error) => {
+        this.member = new Member(memberId, firstName, lastName, birthdate, streetAddress, aptNumber, streetNumber, city, province, country,
+          postalcode, false, email, status, preferredPhone, membershipDetails);
+      })
+
+
 
     this.currentStep = this.currentStep + 1;
     //this.createMember(member)
@@ -118,51 +145,68 @@ export class SignupComponent implements OnInit {
   }
 
   initGoogleMaps(): void {
+    //load google maps autocomplete
     this._mapsLoader.load().then(() => {
+
+
 
       //store catchment area coordinates 
       this.catchmentAreaCoords = this.createCoords();
 
-      let geocoder = new google.maps.Geocoder();
+
+      //create polygon
+      let catchmentAreaPolygon = new google.maps.Polygon({ paths: this.catchmentAreaCoords });
+
+      //create geocoder object
+      const geocoder = new google.maps.Geocoder(this.geocode_options);
 
       // set callback for checking point exists within catchment area
-      this.triangulate = () => {
+      this.triangulate = (address: string): Observable<boolean> => {
 
         //append address components here in one giant string
-        const address = "";
+        console.log(address);
 
-        geocoder.geocode({ 'address': address }, (results, status) => {
-          if (status == 'OK') {
+        return Observable.create(observer => {
+          geocoder.geocode({ 'address': address }, (results, status) => {
 
-            console.log("results from geocode are:");
+            if (status == 'OK') {
 
-            console.log(results)
-
-
-            //create polygon
-            let catchmentAreaPolygon = new google.maps.Polygon({ paths: this.catchmentAreaCoords });
-
-            let WITHIN_BOUNDS = google.maps.geometry.poly.containsLocation(results[0].geometry.location, catchmentAreaPolygon);
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
+              //check if geocoded coordinate is within the catchment area
+              const within_bounds: boolean = google.maps.geometry.poly.containsLocation(results[0].geometry.location, catchmentAreaPolygon);
+              return observer.next(within_bounds)
+            } else {
+              console.log("went here")
+              observer.next(false)
+            }
+          });
         });
-
-
       };
 
-    })
+
+
+      this.autocompleteInput = new google.maps.places.Autocomplete(document.getElementById("autocomplete"), this.geocode_options);
+      google.maps.event.addListener(this.autocompleteInput, 'place_changed', () => {
+
+        let formatted_address = this.autocompleteInput.getPlace().formatted_address;
+
+        //triangulate address
+        this.triangulate(formatted_address).subscribe(val => {
+
+          // set the member within/not within bounds field to `val`
+          this.member.withinCatchmentArea = val;
+
+        });
+      });
+    });
   }
 
   createCoords(): Array<any> {
     const coords = [];
     coordinates.features[1].geometry.coordinates[0].forEach(element => {
       const [lng, lat] = element;
-      console.log('element is: ', element)
       let latlng = { lat: lat, lng: lng };
       coords.push(latlng);
     });
-    console.log(JSON.stringify(coords))
     return coords;
   }
 
