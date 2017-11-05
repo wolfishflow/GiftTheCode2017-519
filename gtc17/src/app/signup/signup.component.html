@@ -223,7 +223,7 @@
           <div class="column is-two-fifth"></div>
           <div class="column is-one-fifth">
             <button type="button" id="backButton" (click)="currentStep = currentStep - 1">Back</button>
-            <button type="button" id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+            <button type="button" id="nextButton" (click)="submitMemberForm()">Complete</button>
           </div>
           <div class="column is-two-fifth"></div>
         </div>
@@ -245,7 +245,7 @@
         </div>
       </div>
 
-      <confirmation *ngIf="currentStep === 8" [member]="member"></confirmation>
+      <!-- <confirmation [member]="member"></confirmation> -->
     </form>
   </div>
   <div class="column is-one-quarter"></div>
