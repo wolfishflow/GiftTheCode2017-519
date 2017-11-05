@@ -173,7 +173,7 @@
 
       <div *ngIf="currentStep === 4">
         <h1 class="title">We’d like to stay in touch! Please share your contact information.</h1>
-        <input [ngClass]="{'hidden': mailAddressSelected}" class="input" formControlName="email" value="memberForm.controls.email"
+        <input *ngIf="mailAddressSelected" class="input" formControlName="email" value="memberForm.controls.email"
           placeholder="Email address" />
         <input class="input" formControlName="preferredPhone" value="memberForm.controls.preferredPhone" placeholder="Preferred Phone Number"
         />

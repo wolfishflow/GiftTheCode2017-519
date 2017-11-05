@@ -190,16 +190,10 @@ export class SignupComponent implements OnInit {
   }
 
   setPermissionSoliticing(event) {
-    
     this.memberForm.controls.permissionForSoliticing.setValue(event.checked);
-    console.log(this.memberForm.value)
   }
   setPermissionNewsletter(event) {
-
-    
     this.memberForm.controls.permissionForNewsletter.setValue(event.checked)
-    console.log(this.memberForm.value)
-    
   }
 
   initGoogleMaps(): void {
