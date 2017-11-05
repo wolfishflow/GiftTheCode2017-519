@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs/Observable';
-import { MatDatepickerModule } from '@angular/material';
+import { MatDatepickerModule, MatCheckboxModule } from '@angular/material';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SignupService } from './signup.service';
-import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormArray } from '@angular/forms';
 import { MapsAPILoader, AgmCoreModule } from '@agm/core';
 
 import coordinates from '../catchment-area.json';
@@ -30,7 +30,19 @@ export class SignupComponent implements OnInit {
     }
 
   }
-
+  public programs: Array<any> = [
+    { id: 1, name: "Newcome & Settlement Services" },
+    { id: 2, name: "Queer and Trans Family Events" },
+    { id: 3, name: "Family Resource Centre Drop-In Programs" },
+    { id: 4, name: "Older LGBTQ Drop-In" },
+    { id: 5, name: "Housing Support for LGBTQ Youth" },
+    { id: 6, name: "Trans Youth Programs" },
+    { id: 7, name: "Meal Trans" },
+    { id: 8, name: "Sunday Drop-In" },
+    { id: 9, name: "Volunteering at The 519" },
+    { id: 10, name: "Green Space Festival" },
+    { id: 11, name: "Special Events at The 519" },
+  ]
   public currentStep: number = 0;
   public memberForm: FormGroup;
   public triangulate: any = undefined;
@@ -67,6 +79,7 @@ export class SignupComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(1)]],
       lastName: ['', [Validators.required, Validators.minLength(1)]],
       birthDate: ['', [Validators.required]],
+      programs: this.formBuilder.array([]),
       streetAddress: ['', [Validators.required, Validators.minLength(1)]],
       aptNumber: ['', [Validators.required, Validators.minLength(1)]],
       streetNumber: ['', [Validators.required, Validators.minLength(1)]],
@@ -78,6 +91,17 @@ export class SignupComponent implements OnInit {
       preferredPhone: ['', [Validators.required, Validators.minLength(1)]],
       membershipDetails: ['', [Validators.required, Validators.minLength(1)]]
     });
+  }
+
+  onCheckboxChanged(program: any, isChecked) {
+    const programsFormArray = <FormArray>this.memberForm.controls.programs;
+
+    if (isChecked) {
+      programsFormArray.push(new FormControl(program));
+    } else {
+      let index = programsFormArray.controls.findIndex(x => x.value == program)
+      programsFormArray.removeAt(index);
+    }
   }
 
   submitMemberForm() {
@@ -102,7 +126,7 @@ export class SignupComponent implements OnInit {
     let formatted_address = `${streetNumber} ${streetAddress}, ${city}, ${province}, ${country}`;
     console.log(formatted_address)
     this.triangulate().subscribe(within_bounds => {
-      this.member = new Member(memberId, firstName, lastName, birthdate, streetAddress,aptNumber, streetNumber, city, province, country,
+      this.member = new Member(memberId, firstName, lastName, birthdate, streetAddress, aptNumber, streetNumber, city, province, country,
         postalcode, within_bounds, email, status, preferredPhone, membershipDetails);
     },
       (error) => {

@@ -19,7 +19,7 @@
             <button id="backButton" (click)="routeToWelcome()">Back</button>
             <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
           </div>
-          <div class="column is-2"></div>
+          <div class="column is-3"></div>
         </div>
       </div>
 
@@ -47,19 +47,35 @@
 
       </div>
 
-      <!--
-      <div *ngIf="currentStep === 2">
-          <h1>What kinds of programs and services are you interested in?</h1>
-          <p>Select as many as you'd like</p>
 
-          
-          <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>                
-          <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
-        </div>
-      -->
       <div *ngIf="currentStep === 2">
+        <h1 class="title">What kinds of programs and services are you interested in?</h1>
+        <p class="sub-header">Select as many as you like.</p>
+        <br>
+
+
+
+        <div class="control" *ngFor="let p of programs">
+          <div class="column is-2"></div>
+          <mat-checkbox (change)="onCheckboxChanged(p, $event.checked)" class="column is-8">{{ p.name }}</mat-checkbox>
+          <div class="column is-2"></div>
+        </div>
+
+
+        <div class="columns">
+          <div class="column is-3"></div>
+          <div class="column is-6">
+            <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
+            <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+          </div>
+          <div class="column is-3"></div>
+        </div>
+      </div>
+
+      <div *ngIf="currentStep === 3">
         <h1 class="title">Do you have a mailing address?</h1>
-        <p>We would like this information so we can send you a membership card.</p><br>
+        <p>We would like this information so we can send you a membership card.</p>
+        <br>
         <button class="options" [ngClass]="{'active': mailAddressSelected}" (click)="toggleMailSelection()">Yes, I have a mailing address
           <i class="fa fa-check" aria-hidden="true"></i>
         </button>
@@ -153,7 +169,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentStep === 3">
+      <div *ngIf="currentStep === 4">
         <h1>We’d like to stay in touch! Please share your contact information.</h1>
         <input class="input" formControlName="email" value="memberForm.controls.email" placeholder="Email address" />
         <input class="input" formControlName="preferredPhone" value="memberForm.controls.preferredPhone" placeholder="Preferred Phone Number"
@@ -177,7 +193,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentStep === 4">
+      <div *ngIf="currentStep === 5">
         <h1>Please create a password so you can access your membership online.</h1>
         <p>Password should be 8-12 characters and include letters and numbers.</p>
         <input class="input" placeholder="Password" />
@@ -193,7 +209,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentStep === 5">
+      <div *ngIf="currentStep === 6">
         <h1>What does the 519 mean to you?</h1>
         <textarea class="textarea" formControlName="membershipDetails" value="memberForm.controls.membershipDetails" placeholder="Tell us anything you like"></textarea>
 
@@ -206,7 +222,7 @@
           <div class="column is-two-fifth"></div>
         </div>
       </div>
-      <confirmation *ngIf="currentStep === 6" [member]="member"></confirmation>
+      <confirmation *ngIf="currentStep === 7" [member]="member"></confirmation>
     </form>
   </div>
   <div class="column is-one-quarter"></div>
