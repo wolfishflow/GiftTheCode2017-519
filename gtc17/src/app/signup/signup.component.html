@@ -6,18 +6,18 @@
 
       <div *ngIf="currentStep === 0">
         <h1 class="title">Would you like to sign up as an individual or as a household?</h1>
-        <button class="options" [ngClass]="{'active': individualSelected}" style="border-bottom: none;" (click)="toggleIndividualSelection()">I would like to sign up as an individual
+        <button type="button" class="options" [ngClass]="{'active': individualSelected}" style="border-bottom: none;" (click)="toggleIndividualSelection()">I would like to sign up as an individual
           <i class="fa fa-check" aria-hidden="true"></i>
         </button>
-        <button class="options" [ngClass]="{'active': !individualSelected}" (click)="toggleIndividualSelection()">I would like to sign up my household
+        <button type="button" class="options" [ngClass]="{'active': !individualSelected}" (click)="toggleIndividualSelection()">I would like to sign up my household
           <i class="fa fa-check" aria-hidden="true"></i>
         </button>
 
         <div class="columns">
           <div class="column is-two-fifth"></div>
           <div class="column is-one-fifth">
-            <button id="backButton" (click)="routeToWelcome()">Back</button>
-            <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+            <button type="button" id="backButton" (click)="routeToWelcome()">Back</button>
+            <button type="button" id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
           </div>
           <div class="column is-two-fifth"></div>
         </div>
@@ -39,8 +39,8 @@
         <div class="columns">
           <div class="column is-two-fifth"></div>
           <div class="column is-two-fifth">
-            <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
-            <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+            <button type="button" id="backButton" (click)="currentStep = currentStep - 1">Back</button>
+            <button type="button" id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
           </div>
           <div class="column is-two-fifth"></div>
         </div>
@@ -65,8 +65,8 @@
         <div class="columns">
           <div class="column is-two-fifth"></div>
           <div class="column is-one-fifth">
-            <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
-            <button id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+            <button type="button" id="backButton" (click)="currentStep = currentStep - 1">Back</button>
+            <button type="button" id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
           </div>
           <div class="column is-two-fifth"></div>
         </div>
@@ -76,19 +76,19 @@
         <h1 class="title">Do you have a mailing address?</h1>
         <p>We would like this information so we can send you a membership card.</p>
         <br>
-        <button class="options" [ngClass]="{'active': mailAddressSelected}" (click)="toggleMailSelection()">Yes, I have a mailing address
+        <button type="button" class="options" [ngClass]="{'active': mailAddressSelected}" (click)="toggleMailSelection()">Yes, I have a mailing address
           <i class="fa fa-check" aria-hidden="true"></i>
         </button>
-        <button class="options" [ngClass]="{'active': !mailAddressSelected}" (click)="toggleMailSelection()">No, I don’t have a mailing address
+        <button type="button" class="options" [ngClass]="{'active': !mailAddressSelected}" (click)="toggleMailSelection()">No, I don’t have a mailing address
           <i class="fa fa-check" aria-hidden="true"></i>
         </button>
 
         <div *ngIf="mailAddressSelected">
           <h2 class="sub-title">This is my..</h2>
-          <button class="options" [ngClass]="{'active': homeAddress}" (click)="toggleAddressSelection()">Home address
+          <button type="button" class="options" [ngClass]="{'active': homeAddress}" (click)="toggleAddressSelection()">Home address
             <i class="fa fa-check" aria-hidden="true"></i>
           </button>
-          <button class="options" [ngClass]="{'active': !homeAddress}" (click)="toggleAddressSelection()">Work address
+          <button type="button" class="options" [ngClass]="{'active': !homeAddress}" (click)="toggleAddressSelection()">Work address
             <i class="fa fa-check" aria-hidden="true"></i>
           </button>
         </div>
@@ -179,13 +179,13 @@
         />
         <br>
         <div class="column is-12">
-          <mat-checkbox (click)="memberForm.controls.permissionForSoliticing = $event.checked">
+          <mat-checkbox (change)="setPermissionSoliticing($event)">
             I give The 519 permission to contact me by via mailing address,
             <span *ngIf="mailAddressSelected">email,</span> and preferred phone number about program and service information as well as donating opportunities.
           </mat-checkbox>
         </div>
         <div class="column is-12">
-          <mat-checkbox (click)="memberForm.controls.permissionForNewsletter = $event.checked">
+          <mat-checkbox (change)="setPermissionNewsletter($event)">
             I would like to opt in for The 519 newsletter.
           </mat-checkbox>
         </div>
@@ -222,8 +222,8 @@
         <div class="columns">
           <div class="column is-two-fifth"></div>
           <div class="column is-one-fifth">
-            <button id="backButton" (click)="currentStep = currentStep - 1">Back</button>
-            <button id="nextButton" (click)="submitMemberForm()">Next></button>
+            <button type="button" id="backButton" (click)="currentStep = currentStep - 1">Back</button>
+            <button type="button" id="nextButton" (click)="submitMemberForm()">Next></button>
           </div>
           <div class="column is-two-fifth"></div>
         </div>
