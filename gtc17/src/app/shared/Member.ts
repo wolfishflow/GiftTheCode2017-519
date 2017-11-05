@@ -5,6 +5,7 @@ export class Member {
   public firstName: string,
   public lastName: string,
   public birthdate: string,
+  public programs: Array<any>,
   public streetAddress: string,
   public aptNumber: string,
   public streetNumber: string,
@@ -14,8 +15,11 @@ export class Member {
   public postalcode: string,
   public withinCatchmentArea: boolean,
   public email: string,
+  public permissionForSoliciting: boolean,
+  public permissionForNewsletter: boolean,
   public status: string,
   public preferredPhone: string,
-  public membershipDetails: string
+  public testimony: string,
+  public password: string,
   ) {}
 }

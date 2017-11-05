@@ -1,19 +1,50 @@
 <div class="container">
+
   <h1 class="prompt">Please confirm your membership details below</h1>
-  <h2>Name</h2>
-  <input class="input" formControlName="firstName" value="memberForm.controls.firstName" placeholder="First Name"/>
-  <input class="input" formControlName="lastName"  value="memberForm.controls.lastName" placeholder="Last Name"/>
-  <h2>Birthday</h2>
+
+
+  <!-- NAME CONFIRMATION -->
+  <div class="columns">
+    <h2 class="sub-title">Name</h2>
+    <input class="input" value="member.firstName" placeholder="First Name" />
+    <input class="input" value="member.lastName" placeholder="Last Name" />
+  </div>
+
+  <!-- BIRTHDAY CONFIRMATION -->
+  <div class="columns">
+    <h2 class="sub-title">bithday</h2>
+    <input type="text" class="input" value="member.birthdate">
+  </div>
+
+  <!-- PROGRAMS CONFIRMATION -->  
+  <div class="columns">
+    <h2 class="sub-title">Programs or Services of Interest</h2>
+    <textarea name="" cols="30" rows="10" class="textarea"></textarea>
+  </div>
+
+  <!-- INDIVIDUAL OR HOUSEHOLD CONFIRMATION -->
+  <div class="columns">
+      <h2 class="sub-title">Individual or Household?</h2>
+
+      <div class="control is-fullwidth">
+        <select [(ngModel)]="member.status" class="select">
+          <option value="individual">Individual</option>
+          <option value="household">Household/option>
+        </select>
+      </div>
+
+  </div>
+
 
   <!-- <h2>Programs or services of interest</h2> -->
   <h2>Individual or Household</h2>
   <div class="select">
-    <select formControlName="status">
+    <select>
       <option>Individual</option>
       <option>Household</option>
-    </select>     
+    </select>
   </div>
-  
 
-  
+
+
 </div>
