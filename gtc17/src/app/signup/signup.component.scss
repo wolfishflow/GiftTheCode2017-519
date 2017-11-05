@@ -5,59 +5,68 @@ button {
   width: 100%;
 }
 
+p {
+  font-size: 22px;
+}
+
+select {
+  width: 100%;
+  display: block;
+}
+
 .title {
-    margin-bottom: 48px;
-    font-weight: bold;
-    font-size: 34px;
-    line-height: 1;
-  }
+  margin-bottom: 34px;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 1;
+}
 
-  .sub-title {
-    margin-top: 50px;
-    margin-bottom: 21px;
-    text-align: justify;
-    font-weight: bold;
-    font-size: 26px;
-    line-height: 1;
-  }
+.sub-title {
+  margin-top: 50px;
+  margin-bottom: 21px;
+  text-align: justify;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 1;
+}
 
-  .options {
-    text-align: justify;
-    font-size: 24px;
-    padding: 24px;
-    font-weight: 500;
-    &:hover {
-      cursor: pointer;
-    }
-    &.active {
-      background-color: $primary-green;
-      color: white;
-    }
+.options {
+  text-align: justify;
+  font-size: 24px;
+  padding: 24px;
+  font-weight: 500;
+  &:hover {
+    cursor: pointer;
   }
-
-  
-  .input {
-      font-size: 32px;
-      margin-bottom: 20px;
-  }
-
-  .centering {
-      align-content: center;
-  }
-
-  #nextButton {
-    margin-top: 60px;
+  &.active {
+    background-color: $primary-green;
     color: white;
-    padding: 12px;
-    background-color: $secondary-purple;
-    text-align: center;
   }
+}
 
-  #backButton {
-    margin-top: 60px;
-    color: $secondary-purple;
-    padding: 12px;
-    border-color: $secondary-purple;
-    background-color: white;
-    text-align: center;
-  }
+.input {
+  font-size: 32px;
+  margin-bottom: 20px;
+  border-color: #979797;
+}
+
+.centering {
+  align-content: center;
+}
+
+#nextButton {
+  margin-top: 60px;
+  color: white;
+  padding: 12px;
+  background-color: $secondary-purple;
+  text-align: center;
+}
+
+#backButton {
+  margin-top: 60px;
+  color: $secondary-purple;
+  padding: 12px;
+  border-color: $secondary-purple;
+  background-color: white;
+  text-align: center;
+}

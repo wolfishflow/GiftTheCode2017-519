@@ -24,7 +24,7 @@
       </div>
 
       <div *ngIf="currentStep === 1">
-        <h1 class="title">Tell us more about yourself</h1>
+        <h1 class="title">Tell us more about yourself.</h1>
         <h2 class="sub-title">Name</h2>
         <input class="input" formControlName="firstName" value="memberForm.controls.firstName" placeholder="First Name" />
         <input class="input" formControlName="lastName" value="memberForm.controls.lastName" placeholder="Last Name" />
@@ -56,6 +56,7 @@
       <div *ngIf="currentStep === 2">
         <h1 class="title">Do you have a mailing address?</h1>
         <p>We would like this information so we can send you a membership card.</p>
+        <br>
         <button class="options" [ngClass]="{'active': mailAddressSelected}" 
         (click)="toggleMailSelection()">Yes, I have a mailing address
         <i class="fa fa-check" aria-hidden="true"></i></button>
@@ -75,7 +76,7 @@
         <h2 class="sub-title">Address Details</h2>
         <input class="input" formControlName="streetAddress" value="memberForm.controls.streetAddress" placeholder="Street" />
         <input class="input" formControlName="city" value="memberForm.controls.city" placeholder="City/Town" />
-        <div class="select">
+        <div class="select" style="width: 100%; display: block;">
           <select formControlName="province" value="memberForm.controls.province">
             <option>ON</option>
             <option>AB</option>
@@ -92,7 +93,7 @@
             <option>YT</option>            
           </select>
         </div>
-        <div class="select">
+        <div class="select" style="width: 100%; display: block;">
           <select formControlName="country">
             <option>Canada</option>
           </select>
