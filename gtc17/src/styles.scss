@@ -49,8 +49,8 @@ mat-checkbox {
     padding-left: 45px;
   }
   .mat-checkbox-inner-container {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
   }
   .mat-checkbox-frame {
     border-radius:50%;
@@ -59,9 +59,12 @@ mat-checkbox {
   }
   
   .mat-checkbox-label {
-    font-size:32px;
+    font-size:24px;
     line-height: 1.5;
     letter-spacing: -0.1px;
+  }
+  .mat-checkbox-layout {
+    white-space: normal;
   }
 
   &.mat-checkbox-checked {
@@ -70,4 +73,36 @@ mat-checkbox {
       background-color: $primary-green !important;
     }
   }
+}
+
+
+
+p {
+  font-size: 22px;
+}
+
+select {
+  width: 100%;
+  display: block;
+}
+
+.title {
+  margin-bottom: 34px;
+  color: $title-font-color;
+  font-size: 42px;
+  line-height: 1;
+}
+
+.sub-title {
+  margin-top: 50px;
+  margin-bottom: 21px;
+  text-align: justify;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.sub-header {
+  font-size: 32px;
+  color: $sub-header-font-color;
 }

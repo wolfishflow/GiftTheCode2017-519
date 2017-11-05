@@ -124,6 +124,7 @@
           <div class="control column">
             <div class="select is-fullwidth">
               <select formControlName="province" value="memberForm.controls.province" placeholder="Select Province...">
+                <option value="-1">Select a province...</option>
                 <option value="ON">Ontario</option>
                 <option value="AB">Alberta</option>
                 <option value="BC">British Columbia</option>
@@ -147,8 +148,9 @@
         <div class="columns">
           <div class="control column">
             <div class="select is-fullwidth">
-              <select formControlName="country" placeholder="Select Country...">
-                <option value="CA" >Canada</option>
+              <select formControlName="country" placeholder="">
+                <option value="-1">Select Country...</option>
+                <option value="CA">Canada</option>
               </select>
             </div>
           </div>
@@ -170,19 +172,23 @@
       </div>
 
       <div *ngIf="currentStep === 4">
-        <h1>We’d like to stay in touch! Please share your contact information.</h1>
-        <input class="input" formControlName="email" value="memberForm.controls.email" placeholder="Email address" />
+        <h1 class="title">We’d like to stay in touch! Please share your contact information.</h1>
+        <input *ngIf="mailAddressSelected" class="input" formControlName="email" value="memberForm.controls.email" placeholder="Email address"
+        />
         <input class="input" formControlName="preferredPhone" value="memberForm.controls.preferredPhone" placeholder="Preferred Phone Number"
         />
         <br>
-        
-        <label class="checkbox">
-          <input type="checkbox"> I give The 519 permission to contact me by via mailing address, email, and preferred phone number about program
-          and service information as well as donating opportunities.
-        </label>
-        <label class="checkbox">
-          <input type="checkbox"> I would like to opt in for The 519 newsletter.
-        </label>
+        <div class="column is-12">
+          <mat-checkbox (click)="memberForm.controls.permissionForSoliticing = $event.checked">
+            I give The 519 permission to contact me by via mailing address,
+            <span *ngIf="mailAddressSelected">email,</span> and preferred phone number about program and service information as well as donating opportunities.
+          </mat-checkbox>
+        </div>
+        <div class="column is-12">
+          <mat-checkbox (click)="memberForm.controls.permissionForNewsletter = $event.checked">
+            I would like to opt in for The 519 newsletter.
+          </mat-checkbox>
+        </div>
         <br>
         <div class="columns">
           <div class="column is-two-fifth"></div>
@@ -196,8 +202,8 @@
       <div *ngIf="currentStep === 5">
         <h1>Please create a password so you can access your membership online.</h1>
         <p>Password should be 8-12 characters and include letters and numbers.</p>
-        <input type="password" formControlName="password" class="password" placeholder="Password" />
-        <input type="password" class="password" formControlName="confirmPassword" placeholder="Retype Password" />
+        <input type="password" formControlName="password" class="password input" placeholder="Password" />
+        <input type="password" class="password input" formControlName="confirmPassword" placeholder="Retype Password" />
 
         <div class="columns">
           <div class="column is-two-fifth"></div>
@@ -211,7 +217,7 @@
 
       <div *ngIf="currentStep === 6">
         <h1>What does the 519 mean to you?</h1>
-        <textarea class="textarea" formControlName="membershipDetails" value="memberForm.controls.membershipDetails" placeholder="Tell us anything you like"></textarea>
+        <textarea class="textarea" formControlName="testimony" value="memberForm.controls.testimony" placeholder="Tell us anything you like"></textarea>
 
         <div class="columns">
           <div class="column is-two-fifth"></div>

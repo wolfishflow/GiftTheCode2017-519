@@ -8,7 +8,7 @@ import { Member } from '../../shared/Member';
 })
 export class ConfirmationComponent implements OnInit {
 
-  @Input() member: Member;
+  @Input() public member: Member;
   constructor() { }
 
   ngOnInit() {

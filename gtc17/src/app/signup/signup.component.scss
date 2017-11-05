@@ -4,36 +4,6 @@ button {
   display: block;
   width: 100%;
 }
-
-p {
-  font-size: 22px;
-}
-
-select {
-  width: 100%;
-  display: block;
-}
-
-.title {
-  margin-bottom: 34px;
-  color: $title-font-color;
-  font-size: 42px;
-  line-height: 1;
-}
-
-.sub-title {
-  margin-top: 50px;
-  margin-bottom: 21px;
-  text-align: justify;
-  font-weight: bold;
-  font-size: 26px;
-  line-height: 1;
-}
-
-.sub-header {
-  font-size: 32px;
-  color: $sub-header-font-color;
-}
   
 .input, .select {
   font-size: 32px;
@@ -57,6 +27,9 @@ select {
 .input {
   font-size: 32px;
   margin-bottom: 20px;
+  border-color: #979797;
+}
+select {
   border-color: #979797;
 }
 

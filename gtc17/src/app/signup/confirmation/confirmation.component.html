@@ -4,35 +4,33 @@
 
 
   <!-- NAME CONFIRMATION -->
-  <div class="columns">
-    <h2 class="sub-title">Name</h2>
-    <input class="input" value="member.firstName" placeholder="First Name" />
-    <input class="input" value="member.lastName" placeholder="Last Name" />
-  </div>
+
+  <h2 class="sub-title">Name</h2>
+  <input class="input" value="member.firstName" placeholder="First Name" />
+  <input class="input" value="member.lastName" placeholder="Last Name" />
+
 
   <!-- BIRTHDAY CONFIRMATION -->
-  <div class="columns">
-    <h2 class="sub-title">bithday</h2>
-    <input type="text" class="input" value="member.birthdate">
-  </div>
 
-  <!-- PROGRAMS CONFIRMATION -->  
-  <div class="columns">
-    <h2 class="sub-title">Programs or Services of Interest</h2>
-    <textarea name="" cols="30" rows="10" class="textarea"></textarea>
-  </div>
+  <h2 class="sub-title">bithday</h2>
+  <input type="text" class="input" value="member.birthdate">
+
+
+  <!-- PROGRAMS CONFIRMATION -->
+
+  <h2 class="sub-title">Programs or Services of Interest</h2>
+  <textarea name="" cols="30" rows="10" class="textarea"></textarea>
+
 
   <!-- INDIVIDUAL OR HOUSEHOLD CONFIRMATION -->
-  <div class="columns">
-      <h2 class="sub-title">Individual or Household?</h2>
 
-      <div class="control is-fullwidth">
-        <select [(ngModel)]="member.status" class="select">
-          <option value="individual">Individual</option>
-          <option value="household">Household/option>
-        </select>
-      </div>
+  <h2 class="sub-title">Individual or Household?</h2>
 
+  <div class="control is-fullwidth">
+    <select class="select" value="member.status">
+      <option value="individual">Individual</option>
+      <option value="household">Household/option>
+    </select>
   </div>
 
 

@@ -84,12 +84,12 @@ export class SignupComponent implements OnInit {
       aptNumber: ['', [Validators.required, Validators.minLength(1)]],
       streetNumber: ['', [Validators.required, Validators.minLength(1)]],
       city: ['', [Validators.required, Validators.minLength(1)]],
-      province: ['', [Validators.required, Validators.minLength(1)]],
-      country: ['', [Validators.required, Validators.minLength(1)]],
+      province: ['-1', [Validators.required, Validators.minLength(1)]],
+      country: ['-1', [Validators.required, Validators.minLength(1)]],
       postalcode: ['', [Validators.required, Validators.minLength(1)]],
       email: ['', [Validators.required, Validators.minLength(1)]],
-      permissionForSoliticing: ['', []],
-      permissionForNewsletter: ['', []],
+      permissionForSoliticing: [false, [Validators.required]],
+      permissionForNewsletter: [false, [Validators.required]],
       preferredPhone: ['', [Validators.required, Validators.minLength(1)]],
       testimony: ['', [Validators.required, Validators.minLength(1)]],
       password: ['', []],
@@ -114,7 +114,7 @@ export class SignupComponent implements OnInit {
     let firstName = this.memberForm.controls["firstName"].value;
     let lastName = this.memberForm.controls["lastName"].value;
     let birthdate = this.memberForm.controls["birthDate"].value;
-    let programs = this.memberForm.controls["programs"].value;    
+    let programs = this.memberForm.controls["programs"].value;
     let streetAddress = this.memberForm.controls["streetAddress"].value;
     let aptNumber = this.memberForm.controls["aptNumber"].value;;
     let streetNumber = this.memberForm.controls["streetNumber"].value;
@@ -126,35 +126,38 @@ export class SignupComponent implements OnInit {
     let preferredPhone = this.memberForm.controls["preferredPhone"].value;
     let permissionForSoliticing = this.memberForm.controls["permissionForSoliticing"].value;
     let permissionForNewsletter = this.memberForm.controls["permissionForNewsletter"].value;
-    
+
     let password = this.memberForm.controls["password"].value;
     let testimony = this.memberForm.controls["testimony"].value;
     let status = this.status;
 
-    let member = new Member(memberId, firstName, lastName, birthdate, programs, streetAddress, aptNumber, streetNumber, city, province, country,
-      postalcode, false, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony ,password);
-    
-    console.log(JSON.stringify(member));
+
     //append address components here in one giant string
-    let formatted_address = `${streetNumber} ${streetAddress}, ${city}, ${province}, ${country}`;
-    
+    let formatted_address = `${streetNumber} ${streetAddress} ${city}, ${province} ${postalcode},     ${country}`;
+
     console.log(formatted_address);
 
-    
-    this.triangulate().subscribe(within_bounds => {
+
+    this.triangulate(formatted_address).subscribe(within_bounds => {
       this.member = new Member(memberId, firstName, lastName, birthdate, programs, streetAddress, aptNumber, streetNumber, city, province, country,
-        postalcode, within_bounds, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony,password);
+        postalcode, within_bounds, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony, password);
+      this.createMember(this.member)
+      this.currentStep = this.currentStep + 1;
+
+
 
     },
       (error) => {
         this.member = new Member(memberId, firstName, lastName, birthdate, programs, streetAddress, aptNumber, streetNumber, city, province, country,
-          postalcode, false, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony , password);
+          postalcode, false, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony, password);
+        this.createMember(this.member)
+        this.currentStep = this.currentStep + 1;
+
+
       })
 
 
 
-    this.currentStep = this.currentStep + 1;
-    //this.createMember(member)
   }
 
   createMember(member: Member) {
@@ -203,7 +206,7 @@ export class SignupComponent implements OnInit {
 
       // set callback for checking point exists within catchment area
       this.triangulate = (address: string): Observable<boolean> => {
-
+        console.log(`address is ${address}`)
         return Observable.create(observer => {
           geocoder.geocode({ 'address': address }, (results, status) => {
 
@@ -234,27 +237,27 @@ export class SignupComponent implements OnInit {
         //all autocompletes are defaulted to Canada
         this.memberForm.controls.country.setValue("CA");
 
-        for(let item of place.address_components) {
+        for (let item of place.address_components) {
 
           let type = item.types[0];
 
-          if(type === "street_number") {
+          if (type === "street_number") {
             this.memberForm.controls.streetNumber.setValue(item.short_name);
             this.memberForm.controls.streetNumber.markAsDirty();
-          } 
-          else if(type === "route") {
+          }
+          else if (type === "route") {
             this.memberForm.controls.streetAddress.setValue(item.short_name);
             this.memberForm.controls.streetAddress.markAsDirty();
           }
-          else if(type === "locality") {
+          else if (type === "locality") {
             this.memberForm.controls.city.setValue(item.short_name);
             this.memberForm.controls.city.markAsDirty();
           }
-          else if(type === "administrative_area_level_1") {
+          else if (type === "administrative_area_level_1") {
             this.memberForm.controls.province.setValue(item.short_name);
             this.memberForm.controls.province.markAsDirty();
           }
-          else if(type === "postal_code") {
+          else if (type === "postal_code") {
             this.memberForm.controls.postalcode.setValue(item.short_name);
             this.memberForm.controls.postalcode.markAsDirty();
           }
