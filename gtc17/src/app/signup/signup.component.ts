@@ -88,8 +88,12 @@ export class SignupComponent implements OnInit {
       country: ['', [Validators.required, Validators.minLength(1)]],
       postalcode: ['', [Validators.required, Validators.minLength(1)]],
       email: ['', [Validators.required, Validators.minLength(1)]],
+      permissionForSoliticing: ['', []],
+      permissionForNewsletter: ['', []],
       preferredPhone: ['', [Validators.required, Validators.minLength(1)]],
-      membershipDetails: ['', [Validators.required, Validators.minLength(1)]]
+      testimony: ['', [Validators.required, Validators.minLength(1)]],
+      password: ['', []],
+      confirmPassword: ['', []]
     });
   }
 
@@ -110,6 +114,7 @@ export class SignupComponent implements OnInit {
     let firstName = this.memberForm.controls["firstName"].value;
     let lastName = this.memberForm.controls["lastName"].value;
     let birthdate = this.memberForm.controls["birthDate"].value;
+    let programs = this.memberForm.controls["programs"].value;    
     let streetAddress = this.memberForm.controls["streetAddress"].value;
     let aptNumber = this.memberForm.controls["aptNumber"].value;;
     let streetNumber = this.memberForm.controls["streetNumber"].value;
@@ -119,19 +124,31 @@ export class SignupComponent implements OnInit {
     let province = this.memberForm.controls["province"].value;
     let country = this.memberForm.controls["country"].value;
     let preferredPhone = this.memberForm.controls["preferredPhone"].value;
-    let membershipDetails = this.memberForm.controls["membershipDetails"].value;
-
+    let permissionForSoliticing = this.memberForm.controls["permissionForSoliticing"].value;
+    let permissionForNewsletter = this.memberForm.controls["permissionForNewsletter"].value;
+    
+    let password = this.memberForm.controls["password"].value;
+    let testimony = this.memberForm.controls["testimony"].value;
     let status = this.status;
 
+    let member = new Member(memberId, firstName, lastName, birthdate, programs, streetAddress, aptNumber, streetNumber, city, province, country,
+      postalcode, false, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony ,password);
+    
+    console.log(JSON.stringify(member));
+    //append address components here in one giant string
     let formatted_address = `${streetNumber} ${streetAddress}, ${city}, ${province}, ${country}`;
-    console.log(formatted_address)
+    
+    console.log(formatted_address);
+
+    
     this.triangulate().subscribe(within_bounds => {
-      this.member = new Member(memberId, firstName, lastName, birthdate, streetAddress, aptNumber, streetNumber, city, province, country,
-        postalcode, within_bounds, email, status, preferredPhone, membershipDetails);
+      this.member = new Member(memberId, firstName, lastName, birthdate, programs, streetAddress, aptNumber, streetNumber, city, province, country,
+        postalcode, within_bounds, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony,password);
+
     },
       (error) => {
-        this.member = new Member(memberId, firstName, lastName, birthdate, streetAddress, aptNumber, streetNumber, city, province, country,
-          postalcode, false, email, status, preferredPhone, membershipDetails);
+        this.member = new Member(memberId, firstName, lastName, birthdate, programs, streetAddress, aptNumber, streetNumber, city, province, country,
+          postalcode, false, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony , password);
       })
 
 
@@ -187,13 +204,13 @@ export class SignupComponent implements OnInit {
       // set callback for checking point exists within catchment area
       this.triangulate = (address: string): Observable<boolean> => {
 
-        //append address components here in one giant string
-        console.log(address);
-
         return Observable.create(observer => {
           geocoder.geocode({ 'address': address }, (results, status) => {
 
             if (status == 'OK') {
+
+              console.log
+              console.log(results)
 
               //check if geocoded coordinate is within the catchment area
               const within_bounds: boolean = google.maps.geometry.poly.containsLocation(results[0].geometry.location, catchmentAreaPolygon);
@@ -211,15 +228,40 @@ export class SignupComponent implements OnInit {
       this.autocompleteInput = new google.maps.places.Autocomplete(document.getElementById("autocomplete"), this.geocode_options);
       google.maps.event.addListener(this.autocompleteInput, 'place_changed', () => {
 
-        let formatted_address = this.autocompleteInput.getPlace().formatted_address;
+        //auto fill fields
+        let place = this.autocompleteInput.getPlace();
 
-        //triangulate address
-        this.triangulate(formatted_address).subscribe(val => {
+        //all autocompletes are defaulted to Canada
+        this.memberForm.controls.country.setValue("CA");
 
-          // set the member within/not within bounds field to `val`
-          this.member.withinCatchmentArea = val;
+        for(let item of place.address_components) {
 
-        });
+          let type = item.types[0];
+
+          if(type === "street_number") {
+            this.memberForm.controls.streetNumber.setValue(item.short_name);
+            this.memberForm.controls.streetNumber.markAsDirty();
+          } 
+          else if(type === "route") {
+            this.memberForm.controls.streetAddress.setValue(item.short_name);
+            this.memberForm.controls.streetAddress.markAsDirty();
+          }
+          else if(type === "locality") {
+            this.memberForm.controls.city.setValue(item.short_name);
+            this.memberForm.controls.city.markAsDirty();
+          }
+          else if(type === "administrative_area_level_1") {
+            this.memberForm.controls.province.setValue(item.short_name);
+            this.memberForm.controls.province.markAsDirty();
+          }
+          else if(type === "postal_code") {
+            this.memberForm.controls.postalcode.setValue(item.short_name);
+            this.memberForm.controls.postalcode.markAsDirty();
+          }
+
+        }
+
+
       });
     });
   }
