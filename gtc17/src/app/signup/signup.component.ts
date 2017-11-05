@@ -141,17 +141,18 @@ export class SignupComponent implements OnInit {
     this.triangulate(formatted_address).subscribe(within_bounds => {
       this.member = new Member(memberId, firstName, lastName, birthdate, programs, streetAddress, aptNumber, streetNumber, city, province, country,
         postalcode, within_bounds, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony, password);
-      this.createMember(this.member)
       this.currentStep = this.currentStep + 1;
 
-
+      console.log(this.member);
 
     },
       (error) => {
         this.member = new Member(memberId, firstName, lastName, birthdate, programs, streetAddress, aptNumber, streetNumber, city, province, country,
           postalcode, false, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony, password);
-        this.createMember(this.member)
+
         this.currentStep = this.currentStep + 1;
+
+        console.log(this.member);
 
 
       })
@@ -186,6 +187,19 @@ export class SignupComponent implements OnInit {
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+  }
+
+  setPermissionSoliticing(event) {
+    
+    this.memberForm.controls.permissionForSoliticing.setValue(event.checked);
+    console.log(this.memberForm.value)
+  }
+  setPermissionNewsletter(event) {
+
+    
+    this.memberForm.controls.permissionForNewsletter.setValue(event.checked)
+    console.log(this.memberForm.value)
+    
   }
 
   initGoogleMaps(): void {
