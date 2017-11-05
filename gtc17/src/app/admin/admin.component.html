@@ -11,6 +11,27 @@
         <span></span>
       </button>
     </div>
+    <div id="navbarMenuHeroA" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item is-active">
+              Dashboard
+            </a>
+          <a class="navbar-item">
+              Members
+            </a>
+        </div>
+        <div class="navbar-end">
+            <span class="navbar-item">
+                <a class="button is-primary is-inverted">
+                  <span>Will Web</span>
+            <span class="icon">
+                      <i class="fa fa-caret-down"></i>
+                    </span>
+            </a>
+            </span>
+        </div>
+      </div>
+  
   </nav>
   <br>
   <p class="offset">Today: Sunday, Nov 5, 1:25PM</p>
@@ -37,6 +58,14 @@
       </div>
       <br><br>
       <h1>Your Weekly Reports</h1>      
+      <br>
+      <img class="chart" src="../../assets/chart.png"/>
+      <br><br>      
+      <div class="chart">
+        <a (click)="exportCsv()"><img src="../../assets/csv1.png" height="250" width="320"/></a>
+        <img class="spacing" src="../../assets/csv2.png" height="250" width="320"/>
+        <img class="spacing" src="../../assets/csv3.png" height="250" width="320"/>  
+      </div>
     </div>
     <div class="column is-1"></div>    
   </div>

@@ -1,3 +1,4 @@
+import { AdminService } from './admin/admin.service';
 import { environment } from './../environments/environment';
 import { AgmCoreModule } from '@agm/core';
 import { appRouterConfig } from './app.routes';
@@ -17,6 +18,7 @@ import { HttpModule } from '@angular/http';
 import { ConfirmationComponent } from './signup/confirmation/confirmation.component';
 import { MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import { AdminComponent } from './admin/admin.component'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { AdminComponent } from './admin/admin.component'
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -43,7 +46,8 @@ import { AdminComponent } from './admin/admin.component'
     AgmCoreModule.forRoot({ apiKey: environment.GMAPS_API_KEY, libraries: ['geometry', 'places'] })
   ],
   providers: [
-    SignupService
+    SignupService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })
