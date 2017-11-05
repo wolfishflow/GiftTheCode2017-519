@@ -148,7 +148,7 @@
           <div class="control column">
             <div class="select is-fullwidth">
               <select formControlName="country" placeholder="Select Country...">
-                <option value="CA">Canada</option>
+                <option value="CA" >Canada</option>
               </select>
             </div>
           </div>
@@ -175,14 +175,15 @@
         <input class="input" formControlName="preferredPhone" value="memberForm.controls.preferredPhone" placeholder="Preferred Phone Number"
         />
         <br>
-
-        <mat-checkbox formControlName="permissionForSoliciting">I give The 519 permission to contact me by via mailing address, email, and preferred phone number about program and
-          service information as well as donating opportunities.
-        </mat-checkbox>
-
-        <mat-checkbox formControlName="permissionForNewsletter">I would like to opt in for The 519 newsletter.
-
-        </mat-checkbox>
+        
+        <label class="checkbox">
+          <input type="checkbox"> I give The 519 permission to contact me by via mailing address, email, and preferred phone number about program
+          and service information as well as donating opportunities.
+        </label>
+        <label class="checkbox">
+          <input type="checkbox"> I would like to opt in for The 519 newsletter.
+        </label>
+        <br>
         <div class="columns">
           <div class="column is-two-fifth"></div>
           <div class="column is-one-fifth">
@@ -210,7 +211,7 @@
 
       <div *ngIf="currentStep === 6">
         <h1>What does the 519 mean to you?</h1>
-        <textarea class="textarea" formControlName="testimony" value="memberForm.controls.testimony" placeholder="Tell us anything you like"></textarea>
+        <textarea class="textarea" formControlName="membershipDetails" value="memberForm.controls.membershipDetails" placeholder="Tell us anything you like"></textarea>
 
         <div class="columns">
           <div class="column is-two-fifth"></div>
