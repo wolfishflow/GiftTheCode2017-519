@@ -4,6 +4,10 @@ button {
   display: block;
   width: 100%;
 }
+
+h3 {
+  font-size: 20px;
+}
   
 .input, .select {
   font-size: 32px;
@@ -61,6 +65,14 @@ mat-checkbox {
     border-color: $secondary-purple;
     background-color: white;
     text-align: center;
+  }
+
+  #donateButton {
+    background: #635d9b;
+    color: white;
+    font-size: 26px;
+    font-weight: 500;    
+    padding: 10px;
   }
 
   /* datepicker custom styles */

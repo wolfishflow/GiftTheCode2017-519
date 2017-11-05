@@ -200,7 +200,7 @@
         </div>
       </div>
       <div *ngIf="currentStep === 5">
-        <h1>Please create a password so you can access your membership online.</h1>
+        <h1 class="title">Please create a password so you can access your membership online.</h1>
         <p>Password should be 8-12 characters and include letters and numbers.</p>
         <input type="password" formControlName="password" class="password input" placeholder="Password" />
         <input type="password" class="password input" formControlName="confirmPassword" placeholder="Retype Password" />
@@ -216,19 +216,36 @@
       </div>
 
       <div *ngIf="currentStep === 6">
-        <h1>What does the 519 mean to you?</h1>
+        <h1 class="title">What does the 519 mean to you?</h1>
         <textarea class="textarea" formControlName="testimony" value="memberForm.controls.testimony" placeholder="Tell us anything you like"></textarea>
 
         <div class="columns">
           <div class="column is-two-fifth"></div>
           <div class="column is-one-fifth">
             <button type="button" id="backButton" (click)="currentStep = currentStep - 1">Back</button>
-            <button type="button" id="nextButton" (click)="submitMemberForm()">Next></button>
+            <button type="button" id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
           </div>
           <div class="column is-two-fifth"></div>
         </div>
       </div>
-      <confirmation *ngIf="currentStep === 7" [member]="member"></confirmation>
+
+      <div *ngIf="currentStep === 7">
+        <h1 class="title">Thanks for becoming a member!</h1>
+        <p *ngIf="mailAddressSelected">Please check your email to verify your information.</p>
+        <br>
+        <h3>Membership plays an important role at The 519.
+          By making a donation you can further your support for the communities that we serve.</h3>
+        <br><br>
+        <div class="columns">
+          <div class="column is-two-fifth"></div>
+          <div class="column is-one-fifth">
+            <button type="button" id="donateButton">Donate Now!</button>
+          </div>
+          <div class="column is-two-fifth"></div>
+        </div>
+      </div>
+
+      <confirmation *ngIf="currentStep === 8" [member]="member"></confirmation>
     </form>
   </div>
   <div class="column is-one-quarter"></div>
