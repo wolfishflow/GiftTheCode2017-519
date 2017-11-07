@@ -1,0 +1,21 @@
+<div class="columns">
+  <div class="column is-one-quarter"></div>
+  <div class="column">
+
+    <form [formGroup]="loginForm">
+
+      <div>
+        <h1 class="title">Login</h1>
+        
+        <input class="email" formControlName="email" value="" placeholder="example@email.com" />
+        <input type="password" formControlName="password" class="password" placeholder="Password" />
+
+        <p *ngIf="errorText != null">{{errorText}}</p>
+
+        <button id="login" (click)="login()">Login</button>
+
+      </div>
+    </form>
+  </div>
+  <div class="column is-one-quarter"></div>
+</div>

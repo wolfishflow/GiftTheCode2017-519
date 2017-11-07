@@ -143,7 +143,8 @@ export class SignupComponent implements OnInit {
         postalcode, within_bounds, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony, password);
       this.currentStep = this.currentStep + 1;
 
-      console.log(this.member);
+      console.log(JSON.stringify(this.member));
+      this.createMember(this.member);
 
     },
       (error) => {
@@ -151,8 +152,10 @@ export class SignupComponent implements OnInit {
           postalcode, false, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony, password);
 
         this.currentStep = this.currentStep + 1;
+      this.createMember(this.member);
+      
 
-        console.log(this.member);
+        console.log(JSON.stringify(this.member));
 
 
       })

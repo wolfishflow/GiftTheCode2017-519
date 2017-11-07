@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class SignupService {
 
-  public apiRoute = "http:localhost:8080/api/member";
+  public apiRoute = "http://localhost:8080/api/save";
 
   constructor(private http: Http) {}
 
