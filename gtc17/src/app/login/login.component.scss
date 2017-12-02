@@ -1,0 +1,98 @@
+@import '../../assets/styles/variables.scss';
+
+button {
+  display: block;
+  width: 100%;
+}
+
+p {
+  font-size: 22px;
+}
+
+select {
+  width: 100%;
+  display: block;
+}
+
+.title {
+  margin-bottom: 34px;
+  color: $title-font-color;
+  font-size: 42px;
+  line-height: 1;
+}
+
+.sub-title {
+  margin-top: 50px;
+  margin-bottom: 21px;
+  text-align: justify;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.sub-header {
+  font-size: 32px;
+  color: $sub-header-font-color;
+}
+  
+.input, .select {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.options {
+  text-align: justify;
+  font-size: 24px;
+  padding: 24px;
+  font-weight: 500;
+  &:hover {
+    cursor: pointer;
+  }
+  &.active {
+    background-color: $primary-green;
+    color: white;
+  }
+}
+
+.input {
+  font-size: 32px;
+  margin-bottom: 20px;
+  border-color: #979797;
+}
+
+mat-checkbox {
+  font-family: Roboto;
+  height:40px;
+  font-size: 32px;
+  line-height:1.25;
+  letter-spacing: -0.1px;
+  
+}
+
+.centering {
+  align-content: center;
+}
+
+#nextButton {
+  margin-top: 60px;
+  color: white;
+  padding: 12px;
+  background-color: $secondary-purple;
+  text-align: center;
+}
+
+  #backButton {
+    margin-top: 60px;
+    color: $secondary-purple;
+    padding: 12px;
+    border-color: $secondary-purple;
+    background-color: white;
+    text-align: center;
+  }
+
+  /* datepicker custom styles */
+
+  .mat-calendar-body-selected {
+    background-color: $primary-green !important;
+    border-color: $secondary-purple !important;
+  }
