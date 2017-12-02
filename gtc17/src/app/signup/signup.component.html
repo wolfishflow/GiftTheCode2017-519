@@ -71,7 +71,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentStep === 3">
+      <div [class.hidden]="!(currentStep === 3)">
         <h1 class="title">Do you have a mailing address?</h1>
         <p>We would like this information so we can send you a membership card.</p>
         <br>
@@ -170,7 +170,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentStep === 4">
+      <div [class.hidden]="!(currentStep === 4)">
         <h1 class="title">We’d like to stay in touch! Please share your contact information.</h1>
         <input *ngIf="mailAddressSelected" class="input" formControlName="email" value="memberForm.controls.email"
           placeholder="Email address" />
@@ -198,7 +198,7 @@
           <div class="column is-two-fifth"></div>
         </div>
       </div>
-      <div *ngIf="currentStep === 5">
+      <div [class.hidden]="!(currentStep === 5)">
         <h1 class="title">Please create a password so you can access your membership online.</h1>
         <p>Password should be 8-12 characters and include letters and numbers.</p>
         <input type="password" formControlName="password" class="password input" placeholder="Password" />
@@ -214,7 +214,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentStep === 6">
+      <div [class.hidden]="!(currentStep === 6)">
         <h1 class="title">What does the 519 mean to you?</h1>
         <textarea class="textarea" formControlName="testimony" value="memberForm.controls.testimony" placeholder="Tell us anything you like"></textarea>
 
@@ -228,7 +228,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentStep === 7">
+      <div [class.hidden]="!(currentStep === 7)">
         <h1 class="title">Thanks for becoming a member!</h1>
         <p *ngIf="mailAddressSelected">Please check your email to verify your information.</p>
         <br>
