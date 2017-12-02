@@ -11,9 +11,9 @@ export class LoginService {
   
   constructor(private _http: Http) { }
 
-  login(email: string, password: string): void {
+  login(email: string, password: string): Observable<any> {
 
-    this._http.post("http://localhost:8080/api/login", {
+    return this._http.post("http://localhost:8080/api/login", {
       email: email,
       password: password
     })
@@ -42,6 +42,8 @@ export class LoginService {
         data.Testimony.testimony,
         null
       );
+
+      return true;
     });
 
 
