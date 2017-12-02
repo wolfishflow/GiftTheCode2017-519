@@ -25,9 +25,25 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this._loginService.login(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value);
+    const credentials: LoginInterface = this.loginForm.value;
+    this._loginService.login(credentials.email, credentials.password).subscribe(isSuccessful => {
+      if(isSuccessful)
+        alert("loggin worked");
+    });
       
 
       // this._router.navigate([""]);
   }
+
+  resetPassword() {
+    const email = (this.loginForm.value as LoginInterface).email
+    this._loginService.resetPassword(email);
+  }
 }
+
+interface LoginInterface {
+  email: string;
+  password: string
+}
+
+

@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { AdminService } from './admin/admin.service';
 import { environment } from './../environments/environment';
 import { AgmCoreModule } from '@agm/core';
@@ -28,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     RenewComponent,
     UpdateComponent,
     ConfirmationComponent,
+    LoginComponent,
     AdminComponent,
   ],
   imports: [

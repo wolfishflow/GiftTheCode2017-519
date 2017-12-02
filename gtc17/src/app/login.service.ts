@@ -12,13 +12,14 @@ export class LoginService {
   constructor(private _http: Http) { }
 
   login(email: string, password: string): void {
+
     this._http.post("http://localhost:8080/api/login", {
       email: email,
       password: password
-    }).subscribe(res => {
+    })
+    .map(res => {
       let data = res.json();
       console.log(data);
-
       this._member = new Member(
         data.memberId,
         data.firstName,
@@ -46,8 +47,16 @@ export class LoginService {
 
   }
 
+  resetPassword(email: string) {
+    console.log("resetting password");
+  }
+
   getMember(): Member {
     return this._member;
+  }
+
+  handleError(error: any) {
+
   }
 
 }
