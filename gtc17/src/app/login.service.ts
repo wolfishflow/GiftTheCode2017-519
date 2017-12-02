@@ -19,31 +19,36 @@ export class LoginService {
     })
     .map(res => {
       let data = res.json();
-      console.log(data);
-      this._member = new Member(
-        data.memberId,
-        data.firstName,
-        data.lastName,
-        data.birthDate,
-        null,
-        data.street,
-        data.apartmentNumber,
-        data.streetNumber,
-        data.city,
-        data.provinceState,
-        data.country,
-        data.postalCode,
-        data.inCatchment,
-        data.email,
-        data.Permission.permSolicit,
-        data.Permission.permNewsletter,
-        null,
-        data.phone,
-        data.Testimony.testimony,
-        null
-      );
-
-      return true;
+      if(data.success) {
+        console.log(data);
+        this._member = new Member(
+          data.memberId,
+          data.firstName,
+          data.lastName,
+          data.birthDate,
+          null,
+          data.street,
+          data.apartmentNumber,
+          data.streetNumber,
+          data.city,
+          data.provinceState,
+          data.country,
+          data.postalCode,
+          data.inCatchment,
+          data.email,
+          data.Permission.permSolicit,
+          data.Permission.permNewsletter,
+          null,
+          data.phone,
+          data.Testimony.testimony,
+          null
+        );
+  
+        return true;
+      } else {
+        return false;
+      }
+      
     });
 
 
