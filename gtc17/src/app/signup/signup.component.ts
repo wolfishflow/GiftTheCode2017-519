@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs/Observable';
-import { MatDatepickerModule, MatCheckboxModule } from '@angular/material';
+// import { MatDatepickerModule, MatCheckboxModule, MatDatepicker } from '@angular/material';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SignupService } from './signup.service';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormArray } from '@angular/forms';
+
 import { MapsAPILoader, AgmCoreModule } from '@agm/core';
 
 import coordinates from '../catchment-area.json';
@@ -56,6 +57,7 @@ export class SignupComponent implements OnInit {
   public homeAddress: boolean = true;
   private geocode_options = { types: ['address'], componentRestrictions: { country: "ca" } };
   private autocompleteInput: any;
+  public picker: any;
 
   constructor(
     private signupService: SignupService,
@@ -70,32 +72,46 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
 
 
-
-    //initialize google maps services
-
+    const nameRegex = /[a-zA-z]/;
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const birthDateRegex = /\d{2}\/\d{2}\/\d{4}/;
+    const postalCodeRegex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
 
     //create member formgroup
     this.memberForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(1)]],
-      lastName: ['', [Validators.required, Validators.minLength(1)]],
-      birthDate: ['', [Validators.required]],
+      firstName: ['', [Validators.required, Validators.minLength(1), Validators.pattern(nameRegex)]],
+      lastName: ['', [Validators.required, Validators.minLength(1), Validators.pattern(nameRegex)]],
+      birthDate: ['', [Validators.required], Validators.pattern(birthDateRegex)],
       programs: this.formBuilder.array([]),
       streetAddress: ['', [Validators.required, Validators.minLength(1)]],
       aptNumber: ['', [Validators.required, Validators.minLength(1)]],
       streetNumber: ['', [Validators.required, Validators.minLength(1)]],
       city: ['', [Validators.required, Validators.minLength(1)]],
-      province: ['-1', [Validators.required, Validators.minLength(1)]],
+      province: ['-1', [Validators.required, Validators.minLength(1), ]],
       country: ['-1', [Validators.required, Validators.minLength(1)]],
-      postalcode: ['', [Validators.required, Validators.minLength(1)]],
-      email: ['', [Validators.required, Validators.minLength(1)]],
+      postalcode: ['', [Validators.required, Validators.minLength(1), Validators.pattern(postalCodeRegex)]],
+      email: ['', [Validators.required, Validators.minLength(1), Validators.pattern(emailRegex)]],
       permissionForSoliticing: [false, [Validators.required]],
       permissionForNewsletter: [false, [Validators.required]],
       preferredPhone: ['', [Validators.required, Validators.minLength(1)]],
       testimony: ['', [Validators.required, Validators.minLength(1)]],
-      password: ['', []],
+      password: ['', ],
       confirmPassword: ['', []]
+    }, {
+      validator: this.matchPassword
     });
   }
+  matchPassword(AC: AbstractControl) {
+    let password = AC.get('password').value; // to get value in input tag
+    let confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
+     if(password != confirmPassword) {
+         console.log('false');
+         AC.get('confirmPassword').setErrors( {matchPassword: true} )
+     } else {
+         console.log('true');
+         return null
+     }
+ }
 
   onCheckboxChanged(program: any, isChecked) {
     const programsFormArray = <FormArray>this.memberForm.controls.programs;
@@ -152,7 +168,7 @@ export class SignupComponent implements OnInit {
           postalcode, false, email, permissionForSoliticing, permissionForNewsletter, status, preferredPhone, testimony, password);
 
         this.currentStep = this.currentStep + 1;
-      this.createMember(this.member);
+        this.createMember(this.member);
       
 
         console.log(JSON.stringify(this.member));
@@ -166,7 +182,9 @@ export class SignupComponent implements OnInit {
 
   createMember(member: Member) {
     this.signupService.createMember(member).takeUntil(this.ngUnsubscribe).subscribe(
-      member => { }
+      member => {
+
+       }
     )
   }
 
@@ -290,6 +308,17 @@ export class SignupComponent implements OnInit {
     return coords;
   }
 
+  onPickerFocused(picker: any): void {
+    console.log(picker);
+    
+    picker.open()
+  }
+
+  onPickerBlur(picker: any): void {
+    console.log(picker)
+    picker.close()
+    
+  }
   //ngif memForm.controls.fieldname.hasError{}
 
 

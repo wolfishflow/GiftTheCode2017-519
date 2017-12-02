@@ -1,5 +1,14 @@
 @import '../../assets/styles/variables.scss';
 
+.hidden {
+  display: none;
+}
+input.ng-invalid, select.ng-invalid {
+  &.ng-dirty, &.ng-touched {
+    border-color: #ff3860;
+  }
+}
+
 button {
   display: block;
   width: 100%;

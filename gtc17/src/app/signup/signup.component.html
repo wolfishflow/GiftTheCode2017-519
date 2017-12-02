@@ -4,7 +4,7 @@
 
     <form [formGroup]="memberForm">
 
-      <div *ngIf="currentStep === 0">
+      <div [class.hidden]="!(currentStep === 0)">
         <h1 class="title">Would you like to sign up as an individual or as a household?</h1>
         <button type="button" class="options" [ngClass]="{'active': individualSelected}" style="border-bottom: none;" (click)="toggleIndividualSelection()">I would like to sign up as an individual
           <i class="fa fa-check" aria-hidden="true"></i>
@@ -12,7 +12,6 @@
         <button type="button" class="options" [ngClass]="{'active': !individualSelected}" (click)="toggleIndividualSelection()">I would like to sign up my household
           <i class="fa fa-check" aria-hidden="true"></i>
         </button>
-
         <div class="columns">
           <div class="column is-two-fifth"></div>
           <div class="column is-one-fifth">
@@ -23,7 +22,7 @@
         </div>
       </div>
 
-      <div *ngIf="currentStep === 1">
+      <div [class.hidden]="!(currentStep === 1)">
         <h1 class="title">Tell us more about yourself.</h1>
         <h2 class="sub-title">Name</h2>
         <input class="input" formControlName="firstName" value="memberForm.controls.firstName" placeholder="First Name" />
@@ -31,7 +30,7 @@
 
         <h2 class="sub-title">Birthday</h2>
         <mat-form-field class="column is-full">
-          <input formControlName="birthDate" matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <input formControlName="birthDate"  matInput [matDatepicker]="picker" placeholder="Choose a date" (focus)="picker.open()" (blur)="picker.close()">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -48,7 +47,7 @@
       </div>
 
 
-      <div *ngIf="currentStep === 2">
+      <div [class.hidden]="!(currentStep === 2)">
         <h1 class="title">What kinds of programs and services are you interested in?</h1>
         <p class="sub-header">Select as many as you like.</p>
         <br>
@@ -223,7 +222,7 @@
           <div class="column is-two-fifth"></div>
           <div class="column is-one-fifth">
             <button type="button" id="backButton" (click)="currentStep = currentStep - 1">Back</button>
-            <button type="button" id="nextButton" (click)="submitMemberForm()">Complete</button>
+            <button type="button" id="nextButton" (click)="submitMemberForm()">Done</button>
           </div>
           <div class="column is-two-fifth"></div>
         </div>
