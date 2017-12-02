@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs/Observable";
 import { Member } from "../shared/Member";
 import 'rxjs/add/operator/map';
@@ -10,11 +10,11 @@ export class AdminService {
 
   public apiRoute = "http://localhost:8080/api/export";
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   createCSV() {
-    console.log("and i got here");
-    this.http.get(this.apiRoute);
+    return this.http.get(this.apiRoute, {responseType: 'blob'})
+      .catch(err => this.formatErrors(err));
   }
 
   private formatErrors(error: any) {

@@ -1,6 +1,7 @@
 import { AdminService } from './admin.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'admin',
@@ -13,18 +14,18 @@ export class AdminComponent implements OnInit {
   constructor(private adminService: AdminService,
               private http: HttpClient) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   submitSearch() {
     this.showCharts = false;
   }
 
   exportCsv() {
-    console.log("got ehre");
-    //this.adminService.createCSV();
-    this.http.get("http://localhost:8080/api/export").subscribe(data => {
-      console.log(data);
+    this.adminService.createCSV().subscribe(
+      csv => {
+      FileSaver.saveAs(csv, 'export.csv');
+    }, err => {
+      console.error(err);
     });
   }
 

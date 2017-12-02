@@ -10,7 +10,7 @@ import { Routes } from "@angular/router";
 
 
 export const appRouterConfig: Routes = [
-  { path: '', component: WelcomeComponent },
+  { path: '', component: WelcomeComponent, pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
   { path: 'update', component: UpdateComponent },
   { path: 'signup', component: SignupComponent },
