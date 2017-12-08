@@ -6,19 +6,20 @@
 
       <div [class.hidden]="!(currentStep === 0)">
         <h1 class="title">Would you like to sign up as an individual or as a household?</h1>
-        <button type="button" class="options" [ngClass]="{'active': individualSelected}" style="border-bottom: none;" (click)="toggleIndividualSelection()">I would like to sign up as an individual
+        <button type="button" class="options button" [ngClass]="{'active': individualSelected}" style="border-bottom: none;" (click)="toggleIndividualSelection()">I would like to sign up as an individual
           <i class="fa fa-check" aria-hidden="true"></i>
         </button>
-        <button type="button" class="options" [ngClass]="{'active': !individualSelected}" (click)="toggleIndividualSelection()">I would like to sign up my household
+        <button type="button" class="options button" [ngClass]="{'active': !individualSelected}" (click)="toggleIndividualSelection()">
+          <span>I would like to sign up my household</span>
           <i class="fa fa-check" aria-hidden="true"></i>
         </button>
         <div class="columns">
-          <div class="column is-two-fifth"></div>
-          <div class="column is-one-fifth">
-            <button type="button" id="backButton" (click)="routeToWelcome()">Back</button>
-            <button type="button" id="nextButton" (click)="currentStep = currentStep + 1">Next></button>
+          <div class="column "></div>
+          <div class="column is-three-fifth">
+            <button type="button" id="backButton" class="button" (click)="routeToWelcome()">Back</button>
+            <button type="button" id="nextButton" class="button" (click)="currentStep = currentStep + 1">Next></button>
           </div>
-          <div class="column is-two-fifth"></div>
+          <div class="column"></div>
         </div>
       </div>
 
