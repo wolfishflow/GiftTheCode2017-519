@@ -6,11 +6,9 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormA
 
 import { MapsAPILoader, AgmCoreModule } from '@agm/core';
 
-import coordinates from '../catchment-area.json';
+import coordinates from 'app/catchment-area.json';
 declare let google: any;
-
-
-import { Member } from '../shared/Member';
+import { Member } from 'app/classes/Member';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/takeUntil';
 import { Router } from '@angular/router';

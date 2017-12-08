@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Member } from '../../shared/Member';
+import { Member } from 'app/classes/Member';
 
 @Component({
   selector: 'confirmation',

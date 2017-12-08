@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 
-import { Member } from './shared/Member';
+import { Member } from 'app/classes/Member';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 

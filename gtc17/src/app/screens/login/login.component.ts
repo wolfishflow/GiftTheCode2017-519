@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { LoginService } from './../login.service';
+import { LoginService } from 'app/services/login.service';
 import { Http } from '@angular/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
