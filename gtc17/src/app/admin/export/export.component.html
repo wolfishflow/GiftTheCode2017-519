@@ -1,0 +1,29 @@
+<br><br>
+<h1>Export Report</h1>
+<br>
+<div class="box">
+  <table class="table is-striped">
+      <tr>
+        <h2>Export Data Options</h2> 
+        <button id="exportButton" (click)="exportCsv()">Export Report</button>        
+      </tr>
+      <tr>
+        <label class="radio">
+          <input type="radio" name="exportOption">
+          <p>New or updated memberships since last export</p>
+        </label>
+      </tr>
+      <tr>
+        <label class="radio">
+          <input type="radio" name="exportOption">    
+          <p>All memberships</p>
+        </label>
+      </tr>
+      <tr>
+        <label class="radio">
+          <input type="radio" name="exportOption">        
+          <p>Specific date range</p>
+        </label>
+      </tr>
+  </table>
+</div>

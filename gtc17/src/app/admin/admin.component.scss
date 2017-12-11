@@ -1,36 +1,12 @@
-h1 {
-  font-weight: 500;
-  font-size: 34px;
-  text-align: center;
+nav {
+  box-shadow: 0px 2px 2px #d8d8d8;
 }
 
-.offset {
-  margin-left: 40px;
+.container {
+  margin-left: 200px;
+  margin-right: 200px;
 }
 
-.background-container {
-  background-color: #dfe3e8;
-}
-
-.chart {
-  display: block;
-  margin: 0 auto;
-}
-
-.spacing {
-  margin-left: 20px;
-}
-
-#search-field {
-  margin: 0 auto;
-}
-
-#search-input {
-
-}
-
-#search-button {
-  background-color: #675f9e;
-  border: none;
-  padding: 6px 8px 6px 8px;
+#hamburger {
+  margin-right: 24px;
 }

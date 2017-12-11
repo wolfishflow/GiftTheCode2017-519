@@ -1,11 +1,10 @@
-import { AdminService } from './admin/admin.service';
 import { environment } from './../environments/environment';
 import { AgmCoreModule } from '@agm/core';
 import { appRouterConfig } from './app.routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { SidebarModule} from 'ng-sidebar';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SignupComponent } from './signup/signup.component';
@@ -19,6 +18,8 @@ import { ConfirmationComponent } from './signup/confirmation/confirmation.compon
 import { MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import { AdminComponent } from './admin/admin.component'
 import { HttpClientModule } from '@angular/common/http';
+import { ExportComponent } from './admin/export/export.component';
+import { ExportService } from './admin/export/export.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     UpdateComponent,
     ConfirmationComponent,
     AdminComponent,
+    ExportComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,12 +44,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatNativeDateModule,
     MatInputModule,
     MatCheckboxModule,
+    SidebarModule.forRoot(),
     RouterModule.forRoot(appRouterConfig, { useHash: false }),
     AgmCoreModule.forRoot({ apiKey: environment.GMAPS_API_KEY, libraries: ['geometry', 'places'] })
   ],
   providers: [
     SignupService,
-    AdminService
+    ExportService
   ],
   bootstrap: [AppComponent]
 })
