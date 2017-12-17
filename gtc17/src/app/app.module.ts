@@ -20,6 +20,7 @@ import { AdminComponent } from './admin/admin.component'
 import { HttpClientModule } from '@angular/common/http';
 import { ExportComponent } from './admin/export/export.component';
 import { ExportService } from './admin/export/export.service';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ExportService } from './admin/export/export.service';
     ConfirmationComponent,
     AdminComponent,
     ExportComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

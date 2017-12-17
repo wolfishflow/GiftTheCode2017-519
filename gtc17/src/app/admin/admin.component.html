@@ -1,34 +1,31 @@
-<nav class="navbar is-blue" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item">
-      <img id="hamburger" src="../../assets/hamburger.svg" (click)="toggleSidebar()">
-      <img src="../../assets/519.png" width="112" height="28">
-    </a>
-  </div>
-  <div id="navbarMenuHeroA" class="navbar-menu">
-    <div class="navbar-end">
-      <span class="navbar-item">
-        <a class="button is-primary is-inverted" style="color: #003168;">
-          <span>Admin</span>
-          <span class="icon">
-            <i class="fa fa-caret-down"></i>
-          </span>
-        </a>
-      </span>
+
+  <nav class="navbar is-blue" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item">
+        <img id="hamburger" src="../../assets/hamburger.svg" (click)="toggleMenu()">
+        <img src="../../assets/519.png" width="112" height="28">
+      </a>
     </div>
+    <div id="navbarMenuHeroA" class="navbar-menu">
+      <div class="navbar-end">
+        <span class="navbar-item">
+          <a class="button is-primary is-inverted" style="color: #003168;">
+            <span>Admin</span>
+            <span class="icon">
+              <i class="fa fa-caret-down"></i>
+            </span>
+          </a>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="columns">
+    <div class="column is-2"></div>
+    <div class="column is-8">
+      <export></export>
+    </div>
+    <div class="column is-2"></div>
   </div>
-</nav>
-<!--
-<ng-sidebar-container style="height: 200px;">
-  <ng-sidebar [(opened)]="opened">
-    <p>Sidebar stuff!</p>
-  </ng-sidebar>
-</ng-sidebar-container>
--->
-<div class="columns">
-  <div class="column is-2"></div>
-  <div class="column is-8">
-    <export></export>            
-  </div>
-  <div class="column is-2"></div>  
-</div>
+
+  <sidebar [@slideInOut]="sidebarState"></sidebar>
