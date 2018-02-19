@@ -10,4 +10,18 @@
   min-width: 250px;
   z-index: 9999;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  border-right: 1px solid #eaeaea;
+}
+
+p {
+  display: inline;
+}
+
+.column {
+  text-align: center;
+}
+
+#exports {
+  max-width: 16%;
+  margin-right: 16px;
 }

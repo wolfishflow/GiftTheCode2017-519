@@ -7,26 +7,26 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
   styleUrls: ['./admin.component.scss'],
   animations: [
     trigger('slideInOut', [
-      state('incative', style({
+      state('active', style({
         transform: 'translate3d(0, 0, 0)'
       })),
-      state('active', style({
+      state('inactive', style({
         transform: 'translate3d(-100%, 0, 0)'
       })),
-      transition('inactive => active', animate('400ms ease-in-out')),
-      transition('active => inactive', animate('400ms ease-in-out'))
+      transition('active => inactive', animate('400ms ease-in-out')),
+      transition('inactive => active', animate('400ms ease-in-out'))
     ]),
   ]
 })
 export class AdminComponent implements OnInit {
 
-  public sidebarState:string = 'active';
+  public sidebarState:string = 'inactive';
 
   constructor() { }
 
   ngOnInit() { }
 
   toggleMenu() {
-    this.sidebarState = this.sidebarState === 'active' ? 'inactive' : 'active';
+    this.sidebarState = this.sidebarState === 'inactive' ? 'active' : 'inactive';
   }
 }

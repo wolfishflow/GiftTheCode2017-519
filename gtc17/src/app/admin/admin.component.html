@@ -22,10 +22,10 @@
 
   <div class="columns">
     <div class="column is-2"></div>
+    <div *ngIf="this.sidebarState === 'active'" class="column is-1"></div>
     <div class="column is-8">
       <export></export>
     </div>
-    <div class="column is-2"></div>
   </div>
 
   <sidebar [@slideInOut]="sidebarState"></sidebar>
